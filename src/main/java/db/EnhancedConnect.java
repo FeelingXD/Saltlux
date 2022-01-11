@@ -1,3 +1,4 @@
+package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ public class EnhancedConnect {
     public ResultSet rs = null;
     
     public EnhancedConnect() {
-        this("jdbc:mysql://localhost/", "root", "root");
+        this("jdbc:mysql://localhost/Saltlux", "root", "root"); //local 호수트 외부접속되게 나중에 바꿀숙있도록, 뒤에 db 테이블 명 적어두도록 .
     }
 
     public EnhancedConnect(String server, String user, String pw) {
@@ -34,6 +35,7 @@ public class EnhancedConnect {
             return null;
         }
     }
+    
     
     public void close() {
         try {
