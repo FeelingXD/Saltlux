@@ -11,7 +11,7 @@
 </script>
 </head>
 <body>
-	 <form name= "login_form" action="login_progress.jps">
+	 <form name= "login_form" action="login_progress.jsp" METHOD="POST">
 	 	<input type="text" name ="id" placeholder ="id"/>	
 	 	<input type="password" name = "pw" placeholder = "pw"/>
 	 	<input type="button" onclick="login_check()" value="로그인"/>
