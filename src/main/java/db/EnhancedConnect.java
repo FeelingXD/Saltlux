@@ -5,10 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
 public class EnhancedConnect {
     public Connection conn = null;
     public Statement stmt = null;
     public ResultSet rs = null;
+    public ResultSetMetaData rm = null;
+  
     
     public EnhancedConnect() {
         this("jdbc:mysql://localhost/Saltlux", "root", "root"); //local 호수트 외부접속되게 나중에 바꿀숙있도록, 뒤에 db 테이블 명 적어두도록 .
@@ -28,6 +32,7 @@ public class EnhancedConnect {
     public ResultSet select(String sql) {
         try {
             rs = this.stmt.executeQuery(sql);
+            rm = (ResultSetMetaData) this.rs.getMetaData();
             return rs;
         } 
         catch (SQLException e) {
@@ -36,6 +41,12 @@ public class EnhancedConnect {
         }
     }
     
+    public void update(String sql) {// update 
+    	
+    }
+    public void delete(String sql) { //  delete 
+    	
+    }
     
     public void close() {
         try {
