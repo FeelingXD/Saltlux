@@ -10,14 +10,20 @@
 </head>
 <body>
 <% 
-
 	EnhancedConnect db = new EnhancedConnect();
- 	db.select("select * from member");
- 	
- 	
+ 	db.select("select * from Member");
+		
  	while(db.rs.next()){
  		out.println(db.rm.getColumnCount());
+ 		out.println(db.rs.getString(1));
+ 		out.println(db.rs.getString(2));
+ 		out.println(db.rs.getString(3));
+ 		out.println(db.rs.getString(4));
+ 		out.println(db.rs.getString(5));
+ 		out.println(db.rs.getString(6));
  	}
+ 	
 %>
+
 </body>
 </html>
