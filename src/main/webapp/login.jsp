@@ -18,7 +18,6 @@
 					out.println("</div>");
 				}
 			%>
-			
 			<form class="form-signin" action="j_security_check" method="post">
 				<div class="form-group">
 					<label for="inputUserName" class="sr-only">아이디</label> 
