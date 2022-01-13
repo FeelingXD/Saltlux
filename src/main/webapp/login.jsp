@@ -7,7 +7,6 @@
 <title>Login</title>
 </head>
 <body>
-<%-- <jsp:include page="menu.jsp" /> --%>
 	<div class="container" align="center">
 		<div class="col-md-4 col-md-offset-4">
 			<h3 class="form-signin-heading">로그인</h3>
@@ -19,7 +18,6 @@
 					out.println("</div>");
 				}
 			%>
-
 			<form class="form-signin" action="j_security_check" method="post">
 				<div class="form-group">
 					<label for="inputUserName" class="sr-only">아이디</label> 
