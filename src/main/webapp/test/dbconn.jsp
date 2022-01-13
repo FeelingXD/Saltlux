@@ -12,7 +12,6 @@
 		String password = "root"; // mysql pw 
 		Class.forName("com.mysql.jdbc.Driver"); 
 		conn = DriverManager.getConnection(url, user ,password);
-		out.println("연결성공 ");
 	}catch(SQLException e){
 		out.println("데이터 연결실패. <br>");
 		out.println(e.getMessage());
