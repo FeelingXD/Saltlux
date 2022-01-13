@@ -1,18 +1,20 @@
 package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
 
 public class EnhancedConnect {
     public Connection conn = null;
     public Statement stmt = null;
     public ResultSet rs = null;
     public ResultSetMetaData rm = null; //
-  
+    public PreparedStatement pstmt =null;
     
     public EnhancedConnect() {
         this("jdbc:mysql://localhost/Saltlux", "root", "root"); //local 호수트 외부접속되게 나중에 바꿀숙있도록, 뒤에 db 테이블 명 적어두도록 .
@@ -23,6 +25,7 @@ public class EnhancedConnect {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(server, user, pw);
             stmt = conn.createStatement();
+            
         }
         catch (Exception e) {
             System.err.println("DB Error" + e.getMessage());
@@ -40,14 +43,25 @@ public class EnhancedConnect {
             return null;
         }
     }
-    
+    public PreparedStatement insert(String... strs) {// insert 
+    	try {
+    		pstmt= this.conn.prepareStatement(strs[0]);
+    		
+    		for(int for_num=1 ;for_num< strs.length;for_num++)
+    		{
+    			pstmt.setString(for_num, (String)strs[for_num]);
+    		}
+    		
+    		return pstmt;
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
     public void update(String sql) {// update 
     	
     }
-    public void delete(String sql) { //  delete 
-    	
-    }
-    
     public void close() {
         try {
             if (this.rs != null)
@@ -56,6 +70,7 @@ public class EnhancedConnect {
                 this.stmt.close();
             if (this.conn != null)
                 this.conn.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
