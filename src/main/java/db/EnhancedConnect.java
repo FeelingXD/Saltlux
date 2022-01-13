@@ -11,7 +11,7 @@ public class EnhancedConnect {
     public Connection conn = null;
     public Statement stmt = null;
     public ResultSet rs = null;
-    public ResultSetMetaData rm = null;
+    public ResultSetMetaData rm = null; //
   
     
     public EnhancedConnect() {
