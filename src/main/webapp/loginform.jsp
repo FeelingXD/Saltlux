@@ -40,6 +40,6 @@
         		</div> <!-- login_form -->
     		</div> <!-- login_box -->
         </div> <!-- main_content -->
-	</section
+	</section>
 </body>
 </html>
