@@ -17,7 +17,7 @@
     	<%@ include file= "header.jsp" %>
     </header>
 	<section>
-	   <%@ include file= "main.jsp" %>
+	   	<%@ include file= "main.jsp" %>
 	</section> 
 	<footer>
 		<%@ include file= "footer.jsp" %>

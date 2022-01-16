@@ -22,7 +22,6 @@
             <li><a href="">소개</a></li>    
           </ul>
         </li>
-       
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">게시판<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -33,9 +32,14 @@
          <li><a href=""target="no_blank">사진첩</a></li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right">       
+      <ul class="nav navbar-nav navbar-right">
+        <% if(session.getAttribute("user_name")==null){ %>    
         <li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
         <li><a href="loginform.jsp"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
+     	<% }else{  %>
+     	<li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span><%=session.getAttribute("user_name")%> 님</a></li>
+        <li><a href="log_out.jsp"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+     	<% } %>
      </ul>
     </div>
   </div>
