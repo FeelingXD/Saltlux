@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    <!-- this -document is for sign up -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel ="stylesheet" href ="./resources/css/member.css" />
-<meta charset="EUC-KR">
+
 <title>회원가입</title>
 </head>
 <body>

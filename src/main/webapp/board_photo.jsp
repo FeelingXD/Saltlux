@@ -33,7 +33,6 @@
 					<span class="col5">등록일</span>
 					<span class="col6">조회</span>
 				</li>
-
 				<li>
 					<span class="col1"><?=$number?></span>
 					<span class="col2"><a></a></span>
