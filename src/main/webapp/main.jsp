@@ -1,9 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,27 +20,27 @@
     <div class="item active">
       <img src="./resources/img/R.jpg" alt="img" style="width:100%; height:400px; ">
       <div class="carousel-caption">
-      ±¤ÁÖ´ëÇÐ±³
+      ê´‘ì£¼ëŒ€í•™êµ
       </div>
     </div>
     <div class="item">
       <img src="./resources/img/salt2.png" alt="img" style="width:100%; height:400px;" >
       <div class="carousel-caption">
-       ¼ÖÆ®·è½º
+       ì†”íŠ¸ë£©ìŠ¤
       </div>
       
     </div>
      <div class="item">
       <img src="./resources/img/witches.png" alt="img" style="width:100%; height:400px;" >
       <div class="carousel-caption">
-      À§Ä¡½º
+      ìœ„ì¹˜ìŠ¤
       </div>
     </div>
     
     <div class="item">
       <img src="./resources/img/igloo.jpg" alt="img" style="width:100%; height:400px;" >
       <div class="carousel-caption">
-      ÀÌ±Û·ç½ÃÅ¥¸®Æ¼
+      ì´ê¸€ë£¨ì‹œíë¦¬í‹°
       </div>
     </div>
   </div>
@@ -62,31 +61,31 @@
 
 					<li>
 						<div class="txt">
-							<p class="btxt">½Ç½À</p>
-							<p class="stxt">ÇöÀå½Ç½À <br>½Ç½À</p>
-							<a href=""><span>´õº¸±â</span></a>
+							<p class="btxt">ì‹¤ìŠµ</p>
+							<p class="stxt">í˜„ìž¥ì‹¤ìŠµ <br>ì‹¤ìŠµ</p>
+							<a href=""><span>ë”ë³´ê¸°</span></a>
 						</div>
 					</li>
 
 					<li>
 						<div class="txt">
-							<p class="btxt">ÇöÀå</p>
-							<p class="stxt">ÇöÀå½Ç½À <br>½Ç½À</p>
-							<a href=""><span>´õº¸±â</span></a>
+							<p class="btxt">í˜„ìž¥</p>
+							<p class="stxt">í˜„ìž¥ì‹¤ìŠµ <br>ì‹¤ìŠµ</p>
+							<a href=""><span>ë”ë³´ê¸°</span></a>
 						</div>
 					</li>
 					<li>
 						<div class="txt">
-							<p class="btxt">½Ç½À</p>
-							<p class="stxt">ÇöÀå½Ç½À <br>½Ç½À</p>
-							<a href=""><span>´õº¸±â</span></a>
+							<p class="btxt">ì‹¤ìŠµ</p>
+							<p class="stxt">í˜„ìž¥ì‹¤ìŠµ <br>ì‹¤ìŠµ</p>
+							<a href=""><span>ë”ë³´ê¸°</span></a>
 						</div>
 					</li>
 					<li>
 						<div class="txt">
-							<p class="btxt">ÇöÀå</p>
-							<p class="stxt">ÇöÀå½Ç½À <br>½Ç½À</p>
-							<a href=""><span>´õº¸±â </span></a>
+							<p class="btxt">í˜„ìž¥</p>
+							<p class="stxt">í˜„ìž¥ì‹¤ìŠµ <br>ì‹¤ìŠµ</p>
+							<a href=""><span>ë”ë³´ê¸° </span></a>
 						</div>
 					</li>
 				</ul>

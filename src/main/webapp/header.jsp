@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -16,34 +16,34 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="index.jsp">Home</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Á¤º¸<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ì •ë³´<span class="caret"></span></a>
           <ul class="dropdown-menu">
-             <li><a href="game_form.php">¼Ò°³</a></li>
-            <li><a href="agent_form.php">¼Ò°³</a></li>
-            <li><a href="map_form.php">¼Ò°³</a></li>
+             <li><a href="game_form.php">ì†Œê°œ</a></li>
+            <li><a href="agent_form.php">ì†Œê°œ</a></li>
+            <li><a href="map_form.php">ì†Œê°œ</a></li>
             
           </ul>
         </li>
        
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">°Ô½ÃÆÇ<span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">ê²Œì‹œíŒ<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="admin_board_list.php">°øÁö»çÇ×</a></li>
-            <li><a href="board_list.jsp">½Ç½ÀÀÏÁö</a></li>
+            <li><a href="admin_board_list.php">ê³µì§€ì‚¬í•­</a></li>
+            <li><a href="board_list.jsp">ì‹¤ìŠµì¼ì§€</a></li>
           </ul>
         </li>
-         <li><a href=""target="no_blank">»çÁøÃ¸</a></li>
+         <li><a href=""target="no_blank">ì‚¬ì§„ì²©</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
 <?php
     if(!$userid) {
 ?>         
-        <li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span> È¸¿ø°¡ÀÔ</a></li>
-        <li><a href="loginform.jsp"><span class="glyphicon glyphicon-log-in"></span> ·Î±×ÀÎ</a></li>
+        <li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span> íšŒì›ê°€ìž…</a></li>
+        <li><a href="loginform.jsp"><span class="glyphicon glyphicon-log-in"></span> ë¡œê·¸ì¸</a></li>
         <?php
     } else {
-                $logged = $username."(".$userid.")´Ô";
+                $logged = $username."(".$userid.")ë‹˜";
 ?>
      </ul>
     </div>

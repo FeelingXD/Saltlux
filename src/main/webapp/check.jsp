@@ -1,7 +1,6 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.sql.*" %>
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@page import="java.sql.*" %>W
 
 <%@ include file="dbconn.jsp" %>
 

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,45 +21,33 @@
 	
    	<div id="board_box">
 	    <h3>
-	    	Ω«Ω¿
+	    	Ïã§Ïäµ
 		</h3>
 	    <ul id="board_list">
 				<li>
-					<span class="col1">π¯»£</span>
-					<span class="col2">¡¶∏Ò</span>
-					<span class="col3">±€æ¥¿Ã</span>
-					<span class="col4">√∑∫Œ</span>
-					<span class="col5">µÓ∑œ¿œ</span>
-					<span class="col6">¡∂»∏</span>
+					<span class="col1">Î≤àÌò∏</span>
+					<span class="col2">Ï†úÎ™©</span>
+					<span class="col3">Í∏ÄÏì¥Ïù¥</span>
+					<span class="col4">Ï≤®Î∂Ä</span>
+					<span class="col5">Îì±Î°ùÏùº</span>
+					<span class="col6">Ï°∞Ìöå</span>
 				</li>
 
 				<li>
-					<span class="col1"><?=$number?></span>
-					<span class="col2"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=$subject?></a></span>
-					<span class="col3"><?=$name?></span>
-					<span class="col4"><?=$file_image?></span>
-					<span class="col5"><?=$regist_day?></span>
-					<span class="col6"><?=$hit?></span>
+					<span class="col1"></span>
+					<span class="col2"><a></a></span> 
+					<span class="col3"></span>
+					<span class="col4"></span>
+					<span class="col5"></span>
+					<span class="col6"></span>
 				</li>	
 	    	</ul>
 			<ul id="page_num"> 	
 
 			</ul> <!-- page -->	    	
 			<ul class="buttons">
-				<li><button onclick="location.href='board_list.php'">∏Ò∑œ</button></li>
-				<li>
-<?php 
-    if($userid) {
-?>
-					<button onclick="location.href='board_form.php'">±€æ≤±‚</button>
-<?php
-	} else {
-?>
-					<a href="javascript:alert('∑Œ±◊¿Œ »ƒ ¿ÃøÎ«ÿ ¡÷ººø‰!')"><button>±€æ≤±‚</button></a>
-<?php
-	}
-?>
-				</li>
+				<li><button onclick="location.href='board_list.jsp'">Î™©Î°ù</button></li>
+				<li>					<button onclick="location.href='board_form.jsp'">Í∏ÄÏì∞Í∏∞</button></li>
 			</ul>
 	</div> <!-- board_box -->
 </section> 

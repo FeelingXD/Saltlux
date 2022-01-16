@@ -7,7 +7,7 @@
 <%
 	Connection conn=null;
 	try{
-		String url ="jdbc:mysql://localhost:3306/Saltlux"; // 뒤에 테이블 명 붙힐것
+		String url ="jdbc:mysql://localhost:3307/Saltlux"; // 뒤에 테이블 명 붙힐것
 		String user = "root"; // mysql user
 		String password = "root"; // mysql pw 
 		Class.forName("com.mysql.jdbc.Driver"); 

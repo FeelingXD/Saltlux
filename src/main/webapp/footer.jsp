@@ -1,17 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
      <div id="footer_content" style="margin-top: 10px;widght:100%;">
-            <p id="footer_logo"> <span>ÆÀ ÇÁ·ÎÁ§Æ®</span></p>
+            <p id="footer_logo"> <span>íŒ€ í”„ë¡œì íŠ¸</span></p>
             <ul id="download">
-                <li>±¤ÁÖ´ë ÄÄÇ»ÅÍ°øÇÐ°ú</li>
-                <li>- ¼­¼ø¿ø </li>
-                <li>- °íÁö¹Î </li>
-                <li>- ¾çÇöÁö </li>
+                <li>ê´‘ì£¼ëŒ€ ì»´í“¨í„°ê³µí•™ê³¼</li>
+                <li>- ì„œìˆœì› </li>
+                <li>- ê³ ì§€ë¯¼ </li>
+                <li>- ì–‘í˜„ì§€ </li>
                 
             </ul>
             <ul id="author">
-                <li>¹®ÀÇ ¸ÞÀÏ</li>
-                <li>- ¸ÞÀÏ ÁÖ¼Ò : tnsdnjs14@naver.com</li>
+                <li>ë¬¸ì˜ ë©”ì¼</li>
+                <li>- ë©”ì¼ ì£¼ì†Œ : tnsdnjs14@naver.com</li>
             </ul>
         </div>

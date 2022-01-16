@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<script src="./resources/js/common.js" charset="utf-8"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
@@ -23,21 +22,21 @@
         <div id="main_content">
       		<div id="login_box">
 	    		<div id="login_title">
-		    		<span>∑Œ±◊¿Œ</span>
+		    		<span>Î°úÍ∑∏Ïù∏</span>
 	    	    </div>
         <div id="login_form">
-          <form  name="login_form" method="post" action="login.php">
+          <form  name="login_form1" method="post" action="login.jsp">
             <ul>
-              <li><input type="text" name="id" placeholder="æ∆¿Ãµ"></li>
-              <li><input type="password" id="pass" name="pass" placeholder="∫Òπ–π¯»£" ></li>
+              <li><input type="text" name="id" placeholder="ÏïÑÏù¥Îîî"></li>
+              <li><input type="password" id="pass" name="pass" placeholder="ÎπÑÎ∞ÄÎ≤àÌò∏" ></li>
               <li><a href="#"><img src="./resources/img/login.png" onclick="check_input()"></a></li> <!-- pass -->
               
-               <a href="member_form.php"><img src="./img/member_button.png"></a>
-              <a href="./index.php"><img src="./img/mainpage_button.png"></a>
+               <a href="member_form.jsp"><img src="./img/member_button.png"></a>
+              <a href="index.jsp"><img src="./img/mainpage_button.png"></a>
             </ul>
           </form>
 
-        		</div> <!-- login_form -->
+        	</div> <!-- login_form -->
     		</div> <!-- login_box -->
         </div> <!-- main_content -->
 	</section>
