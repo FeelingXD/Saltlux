@@ -14,11 +14,12 @@ public class EnhancedConnect {
     public ResultSet rs = null;
     public ResultSetMetaData rm = null; //
     public PreparedStatement pstmt = null;
+ 
     
     public EnhancedConnect() {
         this("jdbc:mysql://localhost:3307/Saltlux", "root", "root"); //local �샇�닔�듃 �쇅遺��젒�냽�릺寃� �굹以묒뿉 諛붽��닕�엳�룄濡�, �뮘�뿉 db �뀒�씠釉� 紐� �쟻�뼱�몢�룄濡� .
     }
-
+    
     public EnhancedConnect(String server, String user, String pw) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -41,25 +42,36 @@ public class EnhancedConnect {
             return null;
         }
     }
+    
+    public ResultSet select(String sql, String str) {//@only String value;
+    	try { //where= '?' = > str
+    		 
+    		pstmt = this.conn.prepareStatement(sql);
+    		pstmt.setString(1, str);
+    		return pstmt.executeQuery();
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    		return null;
+    	}
+    }
+    
     public void insert_Strings(String sql,String...strs) {// @only insert Strings value
     	try {
     		pstmt =this.conn.prepareStatement(sql);
-    		System.out.println(sql);
     		for(int for_num= 0; for_num<strs.length; for_num++) {
     			pstmt.setString(for_num+1 , strs[for_num]);
-    			System.out.println(for_num+1);
-    			System.out.println(strs[for_num]);
     		}
     		pstmt.executeUpdate();
-    	
-    	
     	}catch(SQLException e) {
     		e.printStackTrace();
     	}
     }
+    
     public void update(String sql) {// update s
     	
     }
+    
     public void delete(String sql) { //  delete 
     	
     }

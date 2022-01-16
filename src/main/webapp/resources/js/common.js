@@ -1,17 +1,17 @@
 /**
  * 
  */
-function check_input(){
-	if(!document.login_form1.id.value){
+function check_input(form_name){
+	
+	if(!document.forms[form_name].id.value){
 		alert("아이디값은 필수입니다.");
-		document.login_form1.id.focus();
+		document.forms[form_name].id.focus();
 		return				
 	}
-	if(!document.login_form1.pass.value){
+	if(!document.forms[form_name].pass.value){
 		alert("비밀번호값은 필수입니다.");
+		document.forms[form_name].pass.focus();
 		return
 	}
-	
-	document.login_form1.submit();
-	
+	document.forms[form_name].submit();	
 }
