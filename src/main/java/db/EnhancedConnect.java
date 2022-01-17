@@ -16,8 +16,8 @@ public class EnhancedConnect {
     public PreparedStatement pstmt = null;
  
     
-    public EnhancedConnect() {
-        this("jdbc:mysql://localhost:3307/Saltlux", "root", "root"); //local �샇�닔�듃 �쇅遺��젒�냽�릺寃� �굹以묒뿉 諛붽��닕�엳�룄濡�, �뮘�뿉 db �뀒�씠釉� 紐� �쟻�뼱�몢�룄濡� .
+    public EnhancedConnect() { // test 환경에 맞게 수정할것 .
+        this("jdbc:mysql://localhost:3307/Saltlux", "root", "root"); 
     }
     
     public EnhancedConnect(String server, String user, String pw) {

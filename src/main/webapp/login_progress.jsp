@@ -17,7 +17,6 @@
 		if(id.equals(rs.getString(1))==true&&pass.equals(rs.getString(2))==true){
 			//아이디 비밀번호 일치할경우  rs.close() 추후할것
 			session.setAttribute("is_login", true);
-			System.out.println(rs.getString(3));
 			session.setAttribute("user_name", rs.getString(3));
 			rs.close();
 			%>
