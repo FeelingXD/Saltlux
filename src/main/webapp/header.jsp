@@ -37,7 +37,8 @@
         <li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
         <li><a href="loginform.jsp"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
      	<% }else{  %>
-     	<li><a href="memberform.jsp"><span class="glyphicon glyphicon-user"></span><%=session.getAttribute("user_name")%> 님</a></li>
+     	<li><a><span class="glyphicon glyphicon-user"></span><%=session.getAttribute("user_name")%> 님</a></li>
+     	<li><a href="member_modify.jsp"><span class="glyphicon glyphicon-refresh"></span> 정보수정</a></li>
         <li><a href="log_out.jsp"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
      	<% } %>
      </ul>

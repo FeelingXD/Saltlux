@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,19 +32,35 @@
 					<span class="col5">등록일</span>
 					<span class="col6">조회</span>
 				</li>
+
 				<li>
 					<span class="col1"><?=$number?></span>
-					<span class="col2"><a></a></span>
-					<span class="col3"></span>
-					<span class="col4"></span>
-					<span class="col5"></span>
-					<span class="col6"></span>
+					<span class="col2"><a href="board_view.php?num=<?=$num?>&page=<?=$page?>"><?=$subject?></a></span>
+					<span class="col3"><?=$name?></span>
+					<span class="col4"><?=$file_image?></span>
+					<span class="col5"><?=$regist_day?></span>
+					<span class="col6"><?=$hit?></span>
 				</li>	
 	    	</ul>
 			<ul id="page_num"> 	
 
 			</ul> <!-- page -->	    	
 			<ul class="buttons">
+				<li><button onclick="location.href='board_list.php'">목록</button></li>
+				<li>
+<?php 
+    if($userid) {
+?>
+					<button onclick="location.href='board_form.php'">글쓰기</button>
+<?php
+	} else {
+?>
+					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
+<?php
+	}
+?>
+				</li>
+			</ul>
 	</div> <!-- board_box -->
 </section> 
     

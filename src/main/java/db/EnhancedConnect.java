@@ -17,7 +17,7 @@ public class EnhancedConnect {
  
     
     public EnhancedConnect() { // test 환경에 맞게 수정할것 .
-        this("jdbc:mysql://localhost:3307/Saltlux", "root", "1234"); 
+        this("jdbc:mysql://localhost:3306/test", "root", "dbgood"); 
     }
     
     public EnhancedConnect(String server, String user, String pw) {

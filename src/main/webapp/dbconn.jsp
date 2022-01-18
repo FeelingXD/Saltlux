@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.sql.*"%> 
 <%
 	Connection conn = null;	
@@ -6,9 +6,9 @@
 	ResultSet rs = null;
 	
 	try {
-		String url = "jdbc:mysql://localhost:3307/Saltlux";
+		String url = "jdbc:mysql://localhost:3306/test";
 		String user = "root";
-		String password = "root";
+		String password = "dbgood";
 
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(url, user, password);

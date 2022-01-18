@@ -19,18 +19,15 @@
 <header>
     	<%@ include file= "header.jsp" %>
     </header>
+       </div>
         <div id="main_content">
       		<div id="join_box">
-          	<form  name="member_form" method="post" action="member_insert.jsp">
-			    <h2>회원 가입</h2>
+          	<form  name="member_form" method="post" action="member_modify.php?id=<?=$userid?>">
+			    <h2>회원 정보수정</h2>
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
 				        <div class="col2">
-							<input type="text" name="id">
-				        </div>  
-				        <div class="col3">
-				        	<a href="#"><img src="./resources/img/check_id.gif" 
-				        		onclick="check_id()"></a>
+							<?=$userid?>
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -38,28 +35,30 @@
 			       	<div class="form">
 				        <div class="col1">비밀번호</div>
 				        <div class="col2">
-							<input type="password" name="pass">
+							<input type="password" name="pass" value="<?=$pass?>">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">비밀번호 확인</div>
 				        <div class="col2">
-							<input type="password" name="pass_confirm">
+							<input type="password" name="pass_confirm" value="<?=$pass?>">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">이름</div>
 				        <div class="col2">
-							<input type="text" name="name">
+							<input type="text" name="name" value="<?=$name?>">
 				        </div>                 
 			       	</div>
+			       	
 			       	<div class="clear"></div>
 			       	<div class="form email">
 				        <div class="col1">이메일</div>
 				        <div class="col2">
-							<input type="text" name="email1">@<input type="text" name="email2">
+							<input type="text" name="email1" value="<?=$email1?>">@<input 
+							       type="text" name="email2" value="<?=$email2?>">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -76,7 +75,8 @@
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="bottom_line"> </div>
-			       	<div class="buttons">
+			       	
+	           		<div class="buttons">
 	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="check_input()">&nbsp;
                   		<img id="reset_button" style="cursor:pointer" src="./resources/img/button_reset.gif"
                   			onclick="reset_form()">
@@ -84,6 +84,7 @@
            	</form>
         	</div> <!-- join_box -->
         </div> <!-- main_content -->
+	</section> 
         <footer>
 	<%@ include file= "footer.jsp" %>
     </footer>
