@@ -23,11 +23,13 @@
 			alert("환영합니다."+ "<%=session.getAttribute("user_name")%>" +"님");
 			location.href="index.jsp";
 			<%	
+			return ;
 		}
-	
-	}else{ // 값이있지만 다를경우
-		rs.close();
-		}
+	}
+	%>
+	alert("아이디와 비밀번호를 확인해주세요.");
+	location.href="loginform.jsp";
+	<%
 	rs.close();
 %>
 </script>
