@@ -67,9 +67,9 @@
 				        <div class="col1">기업선택</div>
 				        <div class="col2">
 							 <select name="Work">
-							 <option value="select1"> 광주인공지능센터 </option>
-							 <option value="select2"> 위치스 </option>
-							 <option value="select3"> 이글루시큐리티 </option>
+							 	<option value="Saltlux"> 광주인공지능센터 </option>
+							 	<option value="Witches"> 위치스 </option>
+							 	<option value="EglooSecurity"> 이글루시큐리티 </option>
 							 </select>
 				        </div>                 
 			       	</div>
