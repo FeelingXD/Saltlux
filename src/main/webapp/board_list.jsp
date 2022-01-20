@@ -27,6 +27,20 @@
 	<% EnhancedConnect ec= new EnhancedConnect(); %>
 	<%
 	String sql = "select * from board";
+	int count =ec.selectCnt("board"); //전체행 수
+	String tempStart = request.getParameter("page");
+	int startPage = 0; // limit의 시작값 -> 첫 limit 0,10
+	int onePageCnt=10; // 한페이지에 출력할 행의 갯수
+	count = (int)Math.ceil((double)count/(double)onePageCnt);
+	// 페이지 수 저장
+	
+	if(tempStart != null){ // 처음에는 실행되지 않는다.
+		startPage = (Integer.parseInt(tempStart)-1)*onePageCnt;
+	}
+	
+	/*Vector<TestDTO> v = dao.selectPage("board", startPage, onePageCnt);*/
+
+
 	ResultSet rs =ec.select(sql);
 %>
    	<div id="board_box">
@@ -45,7 +59,7 @@
 					<% while(rs.next()){%>
 				<li>
 					<span class="col1"><%=rs.getString("num") %></span>
-					<span class="col2"><a href="board_view.php?num=<%=rs.getString("num") %>&page=<?=$page?>"><%=rs.getString("title") %></a></span>
+					<span class="col2"><a href="board_view.php?num=<%=rs.getString("num") %>"><%=rs.getString("title") %></a></span>
 					<span class="col3"><%=rs.getString("id")%></span>
 					<span class="col4"><?=$file_image?></span>
 					<span class="col5"><?=$regist_day?></span>
@@ -55,6 +69,13 @@
 	    	</ul>
 	    	
 			<ul id="page_num"> 	
+<%
+		for(int i=1; i<=count; i++){ %>
+			
+			<a href="board_list.jsp?page=<%=i %>">[<%=i%>]
+			</a>
+		<% }; %>
+
 
 			</ul> <!-- page -->	    	
 			<ul class="buttons">

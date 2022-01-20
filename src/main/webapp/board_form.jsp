@@ -40,15 +40,19 @@
 	    <h3 id="board_title">
 	    		게시판 > 글 쓰기
 		</h3>
-	    <form  name="board_form" method="post" action="board_insert.php" enctype="multipart/form-data">
+	    <form  name="board_form" method="post" action="board_insert.jsp" enctype="multipart/form-data">
 	    	 <ul id="board_form">
 				<li>
 					<span class="col1">이름 : </span>
-					<span class="col2"><?=$username?></span>
+					<span class="col2"><%=session.getAttribute("user_name")%></span>
+				</li>	
+				<li>
+					<span class="col1">기업 : </span>
+					<span class="col2"><%=session.getAttribute("workplace")%></span>
 				</li>		
 	    		<li>
 	    			<span class="col1">제목 : </span>
-	    			<span class="col2"><input name="subject" type="text"></span>
+	    			<span class="col2"><input name="title" type="text"></span>
 	    		</li>	    	
 	    		<li id="text_area">	
 	    			<span class="col1">내용 : </span>

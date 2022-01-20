@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="db.EnhancedConnect"%>
+<%@ page import="java.sql.*"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+    
     <!-- this -document is for sign up -->
 <!DOCTYPE html>
 <html>
@@ -13,13 +18,20 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel ="stylesheet" href ="./resources/css/member.css" />
 
+<% EnhancedConnect ec= new EnhancedConnect(); %>
+	<%
+	String sql = "select * from member";
+	ResultSet rs =ec.select(sql);
+	if (rs.next()) {
+%>
+
 <title>회원가입</title>
 </head>
 <body>
 <header>
     	<%@ include file= "header.jsp" %>
     </header>
-       </div>
+       
         <div id="main_content">
       		<div id="join_box">
           	<form  name="member_form" method="post" action="member_modify.php?id=<?=$userid?>">
@@ -27,7 +39,7 @@
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
 				        <div class="col2">
-							<?=$userid?>
+							<%=rs.getString("id") %>
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -35,21 +47,21 @@
 			       	<div class="form">
 				        <div class="col1">비밀번호</div>
 				        <div class="col2">
-							<input type="password" name="pass" value="<?=$pass?>">
+							<input type="password" name="pass" value="<%=rs.getString("pw") %>">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">비밀번호 확인</div>
 				        <div class="col2">
-							<input type="password" name="pass_confirm" value="<?=$pass?>">
+							<input type="password" name="pass_confirm" value="<%=rs.getString("pw") %>">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">이름</div>
 				        <div class="col2">
-							<input type="text" name="name" value="<?=$name?>">
+							<input type="text" name="name" value="<%=rs.getString("name") %>">
 				        </div>                 
 			       	</div>
 			       	
@@ -66,10 +78,10 @@
 			       	<div class="form email">
 				        <div class="col1">기업선택</div>
 				        <div class="col2">
-							 <select name="Work">
-							 <option value="select1"> 광주인공지능센터 </option>
-							 <option value="select2"> 위치스 </option>
-							 <option value="select3"> 이글루시큐리티 </option>
+							 <select name="Work" >
+							 <option value="select1" > 광주인공지능센터 </option>
+							 <option value="select2" > 위치스 </option>
+							 <option value="select3" > 이글루시큐리티 </option>
 							 </select>
 				        </div>                 
 			       	</div>
@@ -82,9 +94,13 @@
                   			onclick="reset_form()">
 	           		</div>
            	</form>
+           	 	<%
+		}
+		
+%>
         	</div> <!-- join_box -->
         </div> <!-- main_content -->
-	</section> 
+	 
         <footer>
 	<%@ include file= "footer.jsp" %>
     </footer>
