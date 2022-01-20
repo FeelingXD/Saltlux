@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page import = "java.io.*,java.util.*, javax.servlet.*" %>
-<%@ page import = "javax.servlet.http.*" %>
+<%@ page import = "java.io.*,java.util.*"%>
 <%@ page import = "org.apache.commons.fileupload.*" %>
 <%@ page import = "org.apache.commons.fileupload.disk.*" %>
 <%@ page import = "org.apache.commons.fileupload.servlet.*" %>
