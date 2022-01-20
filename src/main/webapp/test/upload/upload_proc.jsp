@@ -13,7 +13,7 @@
  
     // 이미지는 서버에 저장
     String saveDir = application.getRealPath("/image/"); // 저장할 경로 지정
- 
+ 	out.println(saveDir);
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정
@@ -44,6 +44,7 @@
                     user.put(name,value);
                 } else {
                     // file 형식일 때
+
                     fileName = new File(item.getName()).getName();
                     File storeFile = new File(saveDir + "/"  + fileName);
                     user.put("user_img",fileName);
