@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="./resources/js/common.js"></script>
 <link rel ="stylesheet" href ="./resources/css/member.css" />
 <meta charset="EUC-KR">
 <title>회원가입</title>
@@ -25,7 +26,7 @@
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
 				        <div class="col2">
-							<input type="text" name="id">
+							<input type="text" name="id" tag="아이디">
 				        </div>  
 				        <div class="col3">
 				        	<a href="#"><img src="./resources/img/check_id.gif" 
@@ -37,28 +38,28 @@
 			       	<div class="form">
 				        <div class="col1">비밀번호</div>
 				        <div class="col2">
-							<input type="password" name="pass">
+							<input type="password" name="pass" tag="비밀번호">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">비밀번호 확인</div>
 				        <div class="col2">
-							<input type="password" name="pass_confirm">
+							<input type="password" name="pass_confirm" tag="비밀번호 확인">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form">
 				        <div class="col1">이름</div>
 				        <div class="col2">
-							<input type="text" name="name">
+							<input type="text" name="name" tag="이름">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
 			       	<div class="form email">
 				        <div class="col1">이메일</div>
 				        <div class="col2">
-							<input type="text" name="email1">@<input type="text" name="email2">
+							<input type="text" name="email1" tag="이메일">@<input type="text" name="email2" tag="이메일">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -76,9 +77,9 @@
 			       	<div class="clear"></div>
 			       	<div class="bottom_line"> </div>
 			       	<div class="buttons">
-	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="check_input()">&nbsp;
+	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="check_input_memberform('member_form')">&nbsp;
                   		<img id="reset_button" style="cursor:pointer" src="./resources/img/button_reset.gif"
-                  			onclick="reset_form()">
+                  			onclick="document.member_form.reset()"/>
 	           		</div>
            	</form>
         	</div> <!-- join_box -->
