@@ -22,8 +22,12 @@
 	
 	if (ec != null) {
 %>
-    <script>location.href = "index.jsp"; </script>
-	<script>alert('정상적으로 가입되었습니다.')</script>
+    <script>
+   	
+    	location.href = "index.jsp"; 
+		alert('정상적으로 가입되었습니다.');
+	
+	</script>
 <% } else { %>
 
     <script>alert('빈 부분이 있습니다.'); </script>
