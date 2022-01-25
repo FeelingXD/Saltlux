@@ -26,7 +26,7 @@
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
 				        <div class="col2">
-							<input type="text" name="id" tag="아이디">
+							<input type="text" name="id" placeholder ="영문+숫자만 가능합니다."tag="아이디">
 				        </div>  
 				        <div class="col3">
 				        	<a href="#"><img src="./resources/img/check_id.gif" 
@@ -38,7 +38,7 @@
 			       	<div class="form">
 				        <div class="col1">비밀번호</div>
 				        <div class="col2">
-							<input type="password" name="pass" tag="비밀번호">
+							<input type="password" name="pass" placeholder="영문+숫자만 가능합니다." tag="비밀번호">
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
