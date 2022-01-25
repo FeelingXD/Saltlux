@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BbsDAO {
@@ -97,7 +98,23 @@ public class BbsDAO {
 			}
 			return list;
 		}
-		
+		//----------카운트
+		public int selectCnt(String table){
+			int result = 0;
+			ResultSet rs = null;
+			String sql = "select count(*) from "+table;
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					result = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
 		//페이징 처리 메소드
 		public boolean nextPage(int pageNumber) {
 			String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
@@ -112,6 +129,27 @@ public class BbsDAO {
 				e.printStackTrace();
 			}
 			return false;
+		}
+		public Bbs getBbs(int bbsID) {
+			String sql = "select * from bbs where bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, bbsID);
+				rs = pstmt.executeQuery();
+				if(rs.next()) {
+					Bbs bbs = new Bbs();
+					bbs.setBbsID(rs.getInt(1));
+					bbs.setBbsTitle(rs.getString(2));
+					bbs.setUserID(rs.getString(3));
+					bbs.setBbsDate(rs.getString(4));
+					bbs.setBbsContent(rs.getString(5));
+					bbs.setBbsAvailable(rs.getInt(6));
+					return bbs;
+				}
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
 		}
     
 }

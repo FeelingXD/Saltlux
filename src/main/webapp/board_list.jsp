@@ -62,7 +62,7 @@
 					<% while(rs.next()){%>
 				<li>
 					<span class="col1"><%=rs.getString("num") %></span>
-					<span class="col2"><a href="board_view.php?num=<%=rs.getString("num") %>"><%=rs.getString("title") %></a></span>
+					<span class="col2"><a href="board_view.jsp?num=<%=rs.getString("num") %>"><%=rs.getString("title") %></a></span>
 					<span class="col3"><%=rs.getString("id")%></span>
 					<span class="col4"><?=$file_image?></span>
 					<span class="col5"><?=$regist_day?></span>

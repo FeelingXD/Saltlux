@@ -26,12 +26,27 @@
     </header>
     <section>
 	<%
-	int pageNumber = 1; //기본은 1 페이지를 할당
+	int pageNumber = 1; //페이지 기본은 1로 설정
 	// 만약 파라미터로 넘어온 오브젝트 타입 'pageNumber'가 존재한다면
 	// 'int'타입으로 캐스팅을 해주고 그 값을 'pageNumber'변수에 저장한다
 	if(request.getParameter("pageNumber") != null){
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
+	
+	BbsDAO bbsDAO = new BbsDAO(); // 인스턴스 생성
+	ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+	
+	int count =bbsDAO.selectCnt("bbs"); //전체행 수
+	String tempStart = request.getParameter("page");
+	int startPage = 0; // limit의 시작값 -> 첫 limit 0,10
+	int onePageCnt=10; // 한페이지에 출력할 행의 갯수
+	count = (int)Math.ceil((double)count/(double)onePageCnt);
+	// 페이지 수 저장
+	
+	if(tempStart != null){ // 처음에는 실행되지 않는다.
+		startPage = (Integer.parseInt(tempStart)-1)*onePageCnt;
+	}
+	
 %>
 
    	<div id="board_box">
@@ -47,37 +62,47 @@
 					<span class="col6">조회</span>
 				</li>
 				<%
-						BbsDAO bbsDAO = new BbsDAO(); // 인스턴스 생성
-						ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+					
 						for(int i = 0; i < list.size(); i++){
 					%>
 				<li>
 					<span class="col1"><%= list.get(i).getBbsID() %></span>
-					<span class="col2"><a href="board_view.php?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle() %></a></span>
+					<span class="col2"><a href="board_view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
+							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></span>
 					<span class="col3"><%= list.get(i).getUserID() %></span>
 					<span class="col5"><%= list.get(i).getBbsDate().substring(0, 11) %></span>
 					<span class="col6"></span>
 				</li>
 				<%}%>	
 	    	</ul>
-	    	<!-- 페이징 처리 영역 -->
-			<%
+	    	
+	    	<!-- 페이지 처리 부분 -->
+	    	<ul id="page_num"> 	
+	    		<%
 				if(pageNumber != 1){
-			%>
-				<a href="board_list2.jsp?pageNumber=<%=pageNumber - 1 %>"
-					class="btn btn-success btn-arraw-left">이전</a>
-			<%
-				}if(bbsDAO.nextPage(pageNumber + 1)){
-			%>
-				<a href="board_list2.jsp?pageNumber=<%=pageNumber + 1 %>"
-					class="btn btn-success btn-arraw-left">다음</a>
-			<%
-				}
-			%>
+				%>
+				<li><a href="board_list2.jsp?pageNumber=<%=pageNumber - 1 %>">◀ </a> </li>
+					<li>&nbsp;</li>
+				<%}%>
+				
+				<%
+					for(int i=1; i<=count; i++){ %>
+					<li><a href="board_list2.jsp?pageNumber=<%=i %>">[<%=i%>]
+					</a></li>
+					<li>&nbsp;</li>
+					<% }; %>
+					
+					<%
+					if(bbsDAO.nextPage(pageNumber + 1)){
+					%>
+					<li><a href="board_list2.jsp?pageNumber=<%=pageNumber + 1 %>"> ▶</a></li>
+					<li>&nbsp;</li>
+					<%
+					}
+					%>
+			</ul>
+			<!----------------->
 			
-
-
-			</ul> <!-- page -->	    	
 			<ul class="buttons">
 				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li>
