@@ -5,7 +5,9 @@
 이름 "/^[가-힣]+$/"
 비밀번호 "/^[a-z]+[a-z0-9]$/g"
 **/
+
 const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
+
 function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 검증 form_name 폼이름, expression 표현식
 	const inputs = document.forms[form_name].elements;
 	var regexp = new RegExp(expression, 'g');
@@ -94,7 +96,7 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 			
 		}
 		
-		if(input.pass.value!=input.passconfirm.value){
+		if(inputs.pass.value!=inputs.pass_confirm.value){
 				
 				return alert('비밀번호가 일치하지않습니다.');
 				
