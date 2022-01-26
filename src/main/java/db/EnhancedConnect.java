@@ -57,7 +57,7 @@ public class EnhancedConnect {
     
     public void insert_Strings(String sql,String...strs) {// @only insert Strings value
     	try {
-    		pstmt =this.conn.prepareStatement(sql);
+    		pstmt =this.conn.prepareStatement(sql); 
     		for(int for_num= 0; for_num<strs.length; for_num++) {
     			pstmt.setString(for_num+1 , strs[for_num]);
     		}
