@@ -6,6 +6,7 @@ public class Bbs {
 	private String userID;
 	private String bbsDate;
 	private String bbsContent;
+	
 	public int getBbsID() {
 		return bbsID;
 	}
@@ -43,5 +44,13 @@ public class Bbs {
 		this.bbsAvailable = bbsAvailable;
 	}
 	private int bbsAvailable;
+	private int hit;
+
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
 
 }

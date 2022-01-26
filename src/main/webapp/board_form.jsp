@@ -11,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<title>Insert title here</title>
+<title>글쓰기</title>
 </head>
 <body>
 <header>
@@ -20,7 +20,7 @@
 	
    	<div id="board_box">
 	    <h3 id="board_title">
-	    		게시판 > 글 쓰기
+	    		실습일지 > 글 쓰기
 		</h3>
 	    <form name="board_form" method="post" action="board_insert.jsp" >
 	    <ul id="board_form">

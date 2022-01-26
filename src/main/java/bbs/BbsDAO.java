@@ -60,7 +60,7 @@ public class BbsDAO {
 	
 	//글쓰기 메소드
 	public int write(String bbsTitle, String userID, String bbsContent) {
-		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?)";
+		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
@@ -69,6 +69,7 @@ public class BbsDAO {
 			pstmt.setString(4, getDate());
 			pstmt.setString(5, bbsContent);
 			pstmt.setInt(6, 1); //글의 유효번호
+			pstmt.setInt(7, 0);// 조회수 0부터 시작
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -91,6 +92,7 @@ public class BbsDAO {
 					bbs.setBbsDate(rs.getString(4));
 					bbs.setBbsContent(rs.getString(5));
 					bbs.setBbsAvailable(rs.getInt(6));
+					bbs.setHit(rs.getInt(7));
 					list.add(bbs);
 				}
 			}catch (Exception e) {
@@ -130,6 +132,7 @@ public class BbsDAO {
 			}
 			return false;
 		}
+		// 게시글 뷰
 		public Bbs getBbs(int bbsID) {
 			String sql = "select * from bbs where bbsID = ?";
 			try {
@@ -144,6 +147,10 @@ public class BbsDAO {
 					bbs.setBbsDate(rs.getString(4));
 					bbs.setBbsContent(rs.getString(5));
 					bbs.setBbsAvailable(rs.getInt(6));
+					int hit=rs.getInt(7); 
+					bbs.setHit(hit);
+					hit++;
+					updateHit(hit,bbsID);//조회수 업데이트
 					return bbs;
 				}
 			}catch (Exception e) {
@@ -151,5 +158,19 @@ public class BbsDAO {
 			}
 			return null;
 		}
-    
+		// 조회수 업데이트 
+		public int updateHit(int hit, int bbsID) {
+			
+			String sql = "update bbs set hit=? where bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, hit);
+				pstmt.setInt(2,bbsID);
+				return pstmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //데이터베이스 오류
+		}
+		
 }
