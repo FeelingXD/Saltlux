@@ -93,7 +93,7 @@ public class BbsDAO {
 					bbs.setBbsDate(rs.getString(5));
 					bbs.setBbsContent(rs.getString(6));
 					bbs.setBbsAvailable(rs.getInt(7));
-					bbs.setHit(rs.getInt(7));
+					bbs.setHit(rs.getInt(8));
 					list.add(bbs);
 				}
 			}catch (Exception e) {
