@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%request.setCharacterEncoding("utf-8");%>
-
+<%@page import="java.io.PrintWriter"%>
+<%@page import="bbs.BbsDAO"%>
+<%@page import="bbs.Bbs"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +20,46 @@
 <header>
 <%@ include file= "header.jsp" %>
 <section>
-	
+<% request.setCharacterEncoding("utf-8"); %>
+	<%
+		// 세션에 값이 담겨있는지 체크
+		String userID = null;
+		if(session.getAttribute("user_name") != null){
+			userID = (String)session.getAttribute("user_name");
+		}
+		if(userID == null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('로그인을 하세요')");
+			script.println("location.href='loginform.jsp'");
+			script.println("</script>");
+		}
+		int bbsID = 0;
+		if(request.getParameter("bbsID") != null){
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
+		if(bbsID == 0){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다')");
+			script.println("location.href='board_list.jsp'");
+			script.println("</script>");
+		}
+		//해당 'bbsID'에 대한 게시글을 가져온 다음 세션을 통하여 작성자 본인이 맞는지 체크한다
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
+		if(!userID.equals(bbs.getUserID())){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('권한이 없습니다')");
+			script.println("location.href='board_list.jsp'");
+			script.println("</script>");
+		}
+	%>
    	<div id="board_box">
 	    <h3 id="board_title">
-	    		실습일지 > 글 쓰기
+	    		실습일지 > 글 수정
 		</h3>
-	    <form name="board_form" method="post" action="board_insert.jsp" >
+	    <form name="board_form" method="post" action="board_modify.jsp?bbsID=<%= bbsID %>" >
 	    <ul id="board_form">
 				<li>
 					<span class="col1">이름 : </span>
@@ -36,12 +71,12 @@
 				</li>		
 	    		<li>
 	    			<span class="col1">제목 : </span>
-	    			<span class="col2"><input name="bbsTitle" type="text"></span>
+	    			<span class="col2"><input name="bbsTitle" type="text" value="<%=bbs.getBbsTitle() %>"></span>
 	    		</li>	    	
 	    		<li id="text_area">	
 	    			<span class="col1">내용 : </span>
 	    			<span class="col2">
-	    				<textarea name="bbsContent"></textarea>
+	    				<textarea name="bbsContent"><%=bbs.getBbsContent() %></textarea>
 	    			</span>
 	    		</li>
 	    		

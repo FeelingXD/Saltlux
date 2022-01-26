@@ -173,5 +173,33 @@ public class BbsDAO {
 			}
 			return -1; //데이터베이스 오류
 		}
+		//게시글 수정 메소드
+		public int update(int bbsID, String bbsTitle, String bbsContent) {
+			String sql = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, bbsTitle);
+				pstmt.setString(2, bbsContent);
+				pstmt.setInt(3, bbsID);
+				return pstmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //데이터베이스 오류
+		}
+		
+		//게시글 삭제 메소드
+		public int delete(int bbsID) {
+			//테이블 데이터 삭제가 아니라 유효번호를 수정하여 데이터 보존
+			String sql = "update bbs set bbsAvailable = 0 where bbsID = ?";
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, bbsID);
+				return pstmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return -1; //데이터베이스 오류 
+		}
 		
 }

@@ -3,7 +3,7 @@
 <%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@ page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 
@@ -17,14 +17,14 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<meta charset="EUC-KR">
+
 <title>게시글</title>
 </head>
 <body>
 <header>
     	<%@ include file= "header.jsp" %>
 </header>
-
+<% request.setCharacterEncoding("utf-8"); %>
 	<% 
 	int bbsID = 0;
 	if(request.getParameter("bbsID") != null){
@@ -59,8 +59,8 @@
 	    </ul>
 	    <ul class="buttons">
 				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
-				<li><button onclick="location.href='board_modify_form.jsp'">수정</button></li>
-				<li><button onclick="location.href='board_delete.jsp' ">삭제</button></li>
+				<li><button onclick="location.href='board_modifyform.jsp?bbsID=<%= bbsID %>'">수정</button></li>
+				<li><button onclick="location.href='board_delete.jsp?bbsID=<%= bbsID %>'">삭제</button></li>
 		</ul>
 	</div> <!-- board_box -->
 </section> 

@@ -2,14 +2,14 @@
     pageEncoding="utf-8"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="bbs.BbsDAO"%>
-
+<% request.setCharacterEncoding("utf-8"); %>
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page"/>
 <jsp:setProperty name="bbs" property="bbsTitle" />
 <jsp:setProperty name="bbs" property="bbsContent"/>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
