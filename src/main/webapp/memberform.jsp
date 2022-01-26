@@ -14,11 +14,26 @@
 <link rel ="stylesheet" href ="./resources/css/member.css" />
 <meta charset="EUC-KR">
 <title>회원가입</title>
+
+<script type="text/javascript">
+
+//아이디 중복 체크 화면 open
+	function check_id() {	
+		if(document.member_form.id.value =="" || document.member_form.id.value.length < 0){
+			alert("아이디를 먼저 입력해주세요")
+			document.member_form.id.focus();
+		}else{
+			window.open("check_id.jsp?id="+document.member_form.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+		}
+	}
+
+</script>
+
 </head>
 <body>
 <header>
     	<%@ include file= "header.jsp" %>
-    </header>
+</header>
         <div id="main_content">
       		<div id="join_box">
           	<form  name="member_form" method="post" action="member_insert.jsp">
@@ -29,7 +44,7 @@
 							<input type="text" name="id" placeholder ="영문+숫자만 가능합니다."tag="아이디">
 				        </div>  
 				        <div class="col3">
-				        	<a href="#"><img src="./resources/img/check_id.gif" 
+				        	<a href="#"><img src="./resources/img/check_id.gif"
 				        		onclick="check_id()"></a>
 				        </div>                 
 			       	</div>
@@ -84,8 +99,8 @@
            	</form>
         	</div> <!-- join_box -->
         </div> <!-- main_content -->
-        <footer>
+<footer>
 	<%@ include file= "footer.jsp" %>
-    </footer>
+</footer>
 </body>
 </html>
