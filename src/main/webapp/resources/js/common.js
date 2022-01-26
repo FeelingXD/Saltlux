@@ -30,6 +30,7 @@ function about_blank(form_name){ //raw
 	}
 }
 
+
 function check_input(form_name){// login TDD
 
 	if(input_value_check(form_name))
@@ -105,3 +106,22 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 	document.forms[form_name].submit();
 	})(form_name);
 }
+
+/*function check_id(form_name){//아이디 중복 체크 화면 open...... 뭐지...
+
+	if(input_value_check(form_name))
+	{
+		return alert('유효하지않은 접근입니다.');
+	} //inject secure
+	
+
+	if(document.member_form.id.value =="" || document.member_form.id.value.length < 0){
+		alert("아이디를 먼저 입력해주세요")
+		document.member_form.id.focus();
+	}else{
+		window.open("check_id.jsp?id="+document.member_form.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+	}
+
+	
+	document.forms[form_name].submit();	
+}*/
