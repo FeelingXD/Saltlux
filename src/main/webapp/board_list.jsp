@@ -66,7 +66,7 @@
 						for(int i = 0; i < list.size(); i++){
 					%>
 				<li>
-					<span class="col1"><%= list.get(i).getBbsID() %></span>
+					<span class="col1"><%= list.get(i).getRownum() %></span>
 					<span class="col2"><a href="board_view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
 							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>")%></a></span>
 					<span class="col3"><%= list.get(i).getUserID() %></span>

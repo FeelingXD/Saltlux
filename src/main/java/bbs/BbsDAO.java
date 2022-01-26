@@ -78,7 +78,7 @@ public class BbsDAO {
 	}
 	//게시글 리스트 메소드
 		public ArrayList<Bbs> getList(int pageNumber){
-			String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1 order by bbsID desc limit 10";
+			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
 			ArrayList<Bbs> list = new ArrayList<Bbs>();
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -86,12 +86,13 @@ public class BbsDAO {
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					Bbs bbs = new Bbs();
-					bbs.setBbsID(rs.getInt(1));
-					bbs.setBbsTitle(rs.getString(2));
-					bbs.setUserID(rs.getString(3));
-					bbs.setBbsDate(rs.getString(4));
-					bbs.setBbsContent(rs.getString(5));
-					bbs.setBbsAvailable(rs.getInt(6));
+					bbs.setRownum(rs.getInt(1));
+					bbs.setBbsID(rs.getInt(2));
+					bbs.setBbsTitle(rs.getString(3));
+					bbs.setUserID(rs.getString(4));
+					bbs.setBbsDate(rs.getString(5));
+					bbs.setBbsContent(rs.getString(6));
+					bbs.setBbsAvailable(rs.getInt(7));
 					bbs.setHit(rs.getInt(7));
 					list.add(bbs);
 				}

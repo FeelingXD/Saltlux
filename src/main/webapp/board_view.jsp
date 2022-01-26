@@ -48,9 +48,9 @@
 		</h3>
   <ul id="view_content">
 			<li>
-				<span class="col1"><b>제목 :</b><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;")
+				<span class="col1"><b>제목 :</b> <%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;")
 				.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
-				<span class="col2"><%=bbs.getUserID() %>| <%= bbs.getBbsDate().substring(0, 11) %></span>
+				<span class="col2"><%=bbs.getUserID() %> | <%= bbs.getBbsDate().substring(0, 11) %></span>
 			</li>
 			<li>
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")

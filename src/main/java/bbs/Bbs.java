@@ -2,7 +2,14 @@ package bbs;
 
 public class Bbs {
 	private int bbsID;
+	private int rownum;
 	private String bbsTitle;
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	private String userID;
 	private String bbsDate;
 	private String bbsContent;
