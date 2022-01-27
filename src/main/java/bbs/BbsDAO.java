@@ -78,7 +78,7 @@ public class BbsDAO {
 	}
 	//게시글 리스트 메소드
 		public ArrayList<Bbs> getList(int pageNumber){
-			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
+			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
 			ArrayList<Bbs> list = new ArrayList<Bbs>();
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -221,7 +221,7 @@ public class BbsDAO {
 		}
 		public ArrayList<Bbs> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
 		      ArrayList<Bbs> list = new ArrayList<Bbs>();
-		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP WHERE "+searchField.trim();
+		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP WHERE "+searchField.trim();
 		      try {
 		            if(searchText != null && !searchText.equals("") ){
 		                SQL +=" LIKE '%"+searchText.trim()+"%'  and bbsAvailable = 1 order by rownum desc limit 10";
