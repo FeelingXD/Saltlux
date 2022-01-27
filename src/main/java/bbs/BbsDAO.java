@@ -105,7 +105,25 @@ public class BbsDAO {
 		public int selectCnt(String table){
 			int result = 0;
 			ResultSet rs = null;
-			String sql = "select count(*) from "+table;
+			String sql = "select count(*) from " + table + " where bbsAvailable = 1";
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				if(rs.next()){
+					result = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		//----------검색카운트
+		public int searchCnt(String searchField,String searchText){
+			int result = 0;
+			ResultSet rs = null;
+			String sql = "select count(*) from bbs WHERE "+searchField.trim() +"= '"+searchText.trim() +"'";
+			
 			
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -201,5 +219,31 @@ public class BbsDAO {
 			}
 			return -1; //데이터베이스 오류 
 		}
+		public ArrayList<Bbs> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
+		      ArrayList<Bbs> list = new ArrayList<Bbs>();
+		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP WHERE "+searchField.trim();
+		      try {
+		            if(searchText != null && !searchText.equals("") ){
+		                SQL +=" LIKE '%"+searchText.trim()+"%'  and bbsAvailable = 1 order by rownum desc limit 10";
+		            }
+		            PreparedStatement pstmt=conn.prepareStatement(SQL);
+					rs=pstmt.executeQuery();//select
+		         while(rs.next()) {
+		            Bbs bbs = new Bbs();
+		            bbs.setRownum(rs.getInt(1));
+					bbs.setBbsID(rs.getInt(2));
+					bbs.setBbsTitle(rs.getString(3));
+					bbs.setUserID(rs.getString(4));
+					bbs.setBbsDate(rs.getString(5));
+					bbs.setBbsContent(rs.getString(6));
+					bbs.setBbsAvailable(rs.getInt(7));
+					bbs.setHit(rs.getInt(8));
+		            list.add(bbs);//list에 해당 인스턴스를 담는다.
+		         }         
+		      } catch(Exception e) {
+		         e.printStackTrace();
+		      }
+		      return list;//
+		   }
 		
 }
