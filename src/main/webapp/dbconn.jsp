@@ -6,9 +6,9 @@
 	ResultSet rs = null;
 	
 	try {
-		String url = "jdbc:mysql://localhost:3307/Saltlux";
+		String url = "jdbc:mysql://localhost:3306/test";
 		String user = "root";
-		String password = "root";
+		String password = "dbgood";
 
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(url, user, password);

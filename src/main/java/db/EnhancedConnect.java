@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
@@ -17,6 +18,7 @@ public class EnhancedConnect {
  
     
     public EnhancedConnect() { // test 환경에 맞게 수정할것 .
+
         this("jdbc:mysql://192.168.0.107:3307/Saltlux", "root", "1234"); 
     }
     
@@ -70,7 +72,31 @@ public class EnhancedConnect {
     public void update(String sql) {// update s
     	
     }
-    
+    //--------------------------------------
+    public int selectCnt(String table){
+		int result = 0;
+		ResultSet rs = null;
+		String sql = "select count(*) from "+table;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally{
+			try { // 다 썻으니 닫아줘야 한다.
+				rs.close();
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
+
+ 
     public void delete(String sql) { //  delete 
     	
     }
