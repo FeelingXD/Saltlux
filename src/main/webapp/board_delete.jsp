@@ -18,7 +18,7 @@
 		if(session.getAttribute("user_name") != null){
 			userID = (String)session.getAttribute("user_name");
 		}
-		// 로그인을 한 사람만 글을 쓸 수 있도록 코드를 수정한다
+		// 로그인체크
 		if(userID == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
