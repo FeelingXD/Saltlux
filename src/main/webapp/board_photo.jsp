@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,34 +18,90 @@
     	<%@ include file= "header.jsp" %>
     </header>
     <section>
-	
-   	<div id="board_box">
-	    <h3>
-	    	실습
-		</h3>
-	    <ul id="board_list">
-				<li>
-					<span class="col1">번호</span>
-					<span class="col2">제목</span>
-					<span class="col3">글쓴이</span>
-					<span class="col4">첨부</span>
-					<span class="col5">등록일</span>
-					<span class="col6">조회</span>
-				</li>
-				<li>
-					<span class="col1"><?=$number?></span>
-					<span class="col2"><a></a></span>
-					<span class="col3"></span>
-					<span class="col4"></span>
-					<span class="col5"></span>
-					<span class="col6"></span>
-				</li>	
-	    	</ul>
-			<ul id="page_num"> 	
-
-			</ul> <!-- page -->	    	
+   
+	<div class="container">
+	<h2>사진게시판</h2>
+	<div class="row">
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div><div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	  <div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div><div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div><div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div><div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div><div class="col-xs-6 col-md-3">
+	    <a href="#" class="thumbnail">
+	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
+	    </a>
+	  </div>
+	</div>
+</div>
+<div id="board_box">
 			<ul class="buttons">
-	</div> <!-- board_box -->
+				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
+				<li>
+<% if(session.getAttribute("user_name")==null){ %>    
+					
+					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
+<% }else{  %>
+					<button onclick="location.href='board_form.jsp'">글쓰기</button>
+<% } %>
+				</li>
+			</ul>
+			</div>
 </section> 
     
     <footer>
