@@ -22,6 +22,7 @@
 <body>
 <header>
 	<% request.setCharacterEncoding("utf-8"); %>
+	<% String category = request.getParameter("cate"); %>
     <%@ include file= "header.jsp" %>
     </header>
     <section>

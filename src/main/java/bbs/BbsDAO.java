@@ -15,9 +15,9 @@ public class BbsDAO {
 	//기본 생성자
 	public BbsDAO() {
 		try {
-			String url = "jdbc:mysql://localhost:3306/test";
+			String url = "jdbc:mysql://localhost:3307/Saltlux";
 			String user = "root";
-			String password = "dbgood";
+			String password = "root";
 
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
@@ -59,8 +59,9 @@ public class BbsDAO {
 	}
 	
 	//글쓰기 메소드
-	public int write(String bbsTitle, String userID, String bbsContent) {
-		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?, ?)";
+	
+	public int write(String bbsTitle, String userID, String bbsContent ,String bbsCategory) {
+		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
@@ -70,15 +71,20 @@ public class BbsDAO {
 			pstmt.setString(5, bbsContent);
 			pstmt.setInt(6, 1); //글의 유효번호
 			pstmt.setInt(7, 0);// 조회수 0부터 시작
+			pstmt.setString(8, bbsCategory);
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1; //데이터베이스 오류
 	}
+	public int write(String bbsTitle, String userID, String bbsContent) { //@overload
+		return this.write(bbsTitle,userID,bbsContent,"journal");
+	}
+	
 	//게시글 리스트 메소드
 		public ArrayList<Bbs> getList(int pageNumber){
-			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
+			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
 			ArrayList<Bbs> list = new ArrayList<Bbs>();
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -221,7 +227,7 @@ public class BbsDAO {
 		}
 		public ArrayList<Bbs> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
 		      ArrayList<Bbs> list = new ArrayList<Bbs>();
-		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs t,(select@rownum:=0) TMP WHERE "+searchField.trim();
+		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs as T,(select@rownum:=0) TMP WHERE "+searchField.trim();
 		      try {
 		            if(searchText != null && !searchText.equals("") ){
 		                SQL +=" LIKE '%"+searchText.trim()+"%'  and bbsAvailable = 1 order by rownum desc limit 10";

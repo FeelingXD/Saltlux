@@ -25,7 +25,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('로그인을 하세요')");
-			script.println("location.href='login.jsp'");
+			script.println("location.href='loginform.jsp'");
 			script.println("</script>");
 		}else{
 			// 입력이 안 된 부분이 있는지 체크한다
