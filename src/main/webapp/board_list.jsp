@@ -126,12 +126,12 @@
 			
 				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li>
-<% if(session.getAttribute("user_name")==null){ %>    
+	<% if(session.getAttribute("user_name")==null){ %>    
 					
 					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
-<% }else{  %>
+	<% }else{  %>
 					<button onclick="location.href='board_form.jsp'">글쓰기</button>
-<% } %>
+	<% } %>
 				</li>
 			</ul>
 	

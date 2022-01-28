@@ -24,7 +24,7 @@ function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 �
 		}
 	}
 }
-function about_blank(form_name){ //raw
+function about_blank(form_name){ //type code.
 	
 	const inputs = document.forms[form_name].elements;
 	for(element of inputs){
@@ -88,7 +88,7 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 			}
 		}
 		
-//		for(i =0 ; i < (inputs.length-1) ; i++,j++){ //value reg check. @row code.
+//		for(i =0 ; i < (inputs.length-1) ; i++,j++){ //value reg check. @past code
 //			
 //			
 //			if(i==2){
@@ -121,7 +121,7 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 	})(form_name);
 }
 
-/*function check_id(form_name){//아이디 중복 체크 화면 open...... 뭐지...
+/*function check_id(form_name){//아이디 중복 체크 화면 open.. @past code
 
 	if(input_value_check(form_name))
 	{
