@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<script type="text/javascript" src="/resources/js/common.js">
+
+</script>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
