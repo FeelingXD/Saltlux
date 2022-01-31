@@ -41,14 +41,17 @@
                     String name = item.getFieldName(); // 필드 이름
                     String value = new String((item.getString()).getBytes("8859_1"),"utf-8"); // 필드 값, 한글 인코딩
                     user.put(name,value);
+                    
                 } else {
-                    // file 형식일 때
-
+                    
+                	// file 형식일 때
                     fileName = new File(item.getName()).getName();
                     File storeFile = new File(saveDir + "/"  + fileName);
                     user.put("user_img",fileName);
+                   
                     // saves the file on disk
                     item.write(storeFile);
+                    
                 }
             }
         }

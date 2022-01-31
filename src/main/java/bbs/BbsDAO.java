@@ -124,6 +124,7 @@ public class BbsDAO {
 			}
 			return result;
 		}
+		
 		//----------검색카운트
 		public int searchCnt(String searchField,String searchText){
 			int result = 0;
@@ -142,6 +143,7 @@ public class BbsDAO {
 			}
 			return result;
 		}
+		
 		//페이징 처리 메소드
 		public boolean nextPage(int pageNumber) {
 			String sql = "select * from bbs where bbsID < ? and bbsAvailable = 1";
@@ -157,6 +159,7 @@ public class BbsDAO {
 			}
 			return false;
 		}
+		
 		// 게시글 뷰
 		public Bbs getBbs(int bbsID) {
 			String sql = "select * from bbs where bbsID = ?";
@@ -183,6 +186,7 @@ public class BbsDAO {
 			}
 			return null;
 		}
+		
 		// 조회수 업데이트 
 		public int updateHit(int hit, int bbsID) {
 			
@@ -192,12 +196,15 @@ public class BbsDAO {
 				pstmt.setInt(1, hit);
 				pstmt.setInt(2,bbsID);
 				return pstmt.executeUpdate();
+				
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+			
 			return -1; //데이터베이스 오류
 		}
-		//게시글 수정 메소드
+		
+		//게시글 수정 메소드		
 		public int update(int bbsID, String bbsTitle, String bbsContent) {
 			String sql = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID = ?";
 			try {

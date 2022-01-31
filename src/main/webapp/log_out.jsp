@@ -6,7 +6,7 @@
 	session.invalidate();
 %>
 <script type="text/javascript">
-alert("로그아웃하셧습니다.");
-location.href="index.jsp";
+	alert("로그아웃하셧습니다.");
+	location.href="index.jsp";
 </script>
 

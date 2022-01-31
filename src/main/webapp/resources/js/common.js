@@ -13,7 +13,7 @@ reghash = new Map(
 		["email1",/^[a-z0-9]+$/],
 		["email2",/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/]
 	]);
-const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
+//const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
 
 function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 검증 form_name 폼이름, expression 표현식
 	const inputs = document.forms[form_name].elements;
@@ -121,7 +121,7 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 	})(form_name);
 }
 
-/*function check_id(form_name){//아이디 중복 체크 화면 open.. @past code
+/*function check_id(form_name){//아이디 중복 체크 화면 open @past code not used.
 
 	if(input_value_check(form_name))
 	{
