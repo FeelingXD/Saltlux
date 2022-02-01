@@ -1,3 +1,4 @@
+<%@page import="db.EnhancedConnect"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import = "java.io.*,java.util.*"%>
@@ -7,12 +8,14 @@
 <%@ page import = "org.apache.commons.io.output.*" %>
 
 <%
+	String user_name =(String)session.getAttribute("user_name");
+%>
+<%
     // request로 들어온 데이터 저장할 변수 선언
     Map<String, String> user = new HashMap<String, String>();
  
     // 이미지는 서버에 저장
     String saveDir = application.getRealPath("/image/"); // 저장할 경로 지정
- 	out.println(saveDir);
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정
@@ -47,16 +50,27 @@
                 	// file 형식일 때
                     fileName = new File(item.getName()).getName();
                     File storeFile = new File(saveDir + "/"  + fileName);
-                    user.put("user_img",fileName);
-                   
+                    user.put("image",fileName);
+                   	user.put("path",saveDir + "/"  + fileName);
                     // saves the file on disk
                     item.write(storeFile);
                     
                 }
             }
+            // enhanced connect
+			EnhancedConnect ec= new EnhancedConnect();
+			ec.insert_hash(user_name, "photo" , user );
+			out.println(ec.last_In());
+			
+            for(String item : user.values()){
+            	out.println(item);
+            	
+            }
+            
             for(String item : user.keySet()){
             	out.println(item);
             }
+            
         }
     }
     catch ( Exception e ) { out.println(e); }

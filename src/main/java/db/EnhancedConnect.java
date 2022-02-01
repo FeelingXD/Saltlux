@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.mysql.cj.jdbc.result.ResultSetMetaData;
 
@@ -69,37 +71,123 @@ public class EnhancedConnect {
     	}
     }
     
+    public void insert_PhotoContent( String userid,String category , HashMap<String, String> multi) {
+    	//LAST_INSERT_ID()
+    	String sql_board ="insert into bbs values(?,?,?,?,?,?,?,?)";//
+    
+    	String sql_image ="insert into image values(?,?,?,?)";// 
+    	try {
+    		
+    		conn.setAutoCommit(false);
+    	
+    		PreparedStatement pstmt =conn.prepareStatement(sql_board);
+    		pstmt.setInt(1, getNext());
+			pstmt.setString(2, multi.get("bbsTitle"));
+			pstmt.setString(3, userid);// userid
+			pstmt.setString(4, getDate());
+			pstmt.setString(5, multi.get("bbsContent"));
+			pstmt.setInt(6, 1); //글의 유효번호
+			pstmt.setInt(7, 0);// 조회수 0부터 시작
+			pstmt.setString(8, category);
+			pstmt.execute();
+    		PreparedStatement pstmt2 =conn.prepareStatement(sql_image);
+    		
+    	}catch(SQLException e) {
+    		
+    		e.printStackTrace();
+    	}
+    }
     public void update(String sql) {// update s
     	
     }
-    //--------------------------------------
-    public int selectCnt(String table){
-		int result = 0;
-		ResultSet rs = null;
-		String sql = "select count(*) from "+table;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			if(rs.next()){
-				result = rs.getInt(1);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally{
-			try { // 다 썻으니 닫아줘야 한다.
-				rs.close();
-				pstmt.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return result;
-	}
-
- 
+   
     public void delete(String sql) { //  delete 
     	
     }
+    //--- TDD insert_hash 
+    public void insert_hash(String userid,String category ,Map<String, String> multi) throws SQLException {
+    	String sql_board ="insert into bbs values(?,?,?,?,?,?,?,?)";//
+        
+    	String sql_image ="insert into image values(?,?,?)";// 
+    	int next =getNext();
+    	String date= getDate();
+    	
+    	try {
+    		conn.setAutoCommit(false);
+    		
+    		PreparedStatement pstmt =conn.prepareStatement(sql_board);
+  			
+	    	pstmt.setInt(1, next);
+			pstmt.setString(2, multi.get("bbsTitle"));
+			pstmt.setString(3, userid);// 
+			pstmt.setString(4, date);
+			pstmt.setString(5, multi.get("bbsContent"));
+			pstmt.setInt(6, 1); //글의 유효번호
+			pstmt.setInt(7, 0);// 조회수 0부터 시작
+			pstmt.setString(8, category);
+			pstmt.executeUpdate();
+			
+			PreparedStatement pstmt2 =conn.prepareStatement(sql_image);
+			pstmt2.setInt(1, next);
+			pstmt2.setString(2, multi.get("image"));
+			pstmt2.setString(3, multi.get("path"));
+			pstmt2.executeUpdate();
+			
+			conn.commit();
+    		
+    	}catch(SQLException e) {
+    		conn.rollback();
+    		e.printStackTrace();
+    	}finally {
+    		conn.setAutoCommit(true);
+    	}
+    	
+    }
+    
+   //-----
+    public String getDate() {
+		String sql = "select now()";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ""; //데이터베이스 오류
+	}
+    public int last_In() {
+    	
+    	String sql = "SELECT max(last_insert_id(bbsID)) FROM Saltlux.bbs";
+    	try {
+    		PreparedStatement pstmt = conn.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			return rs.getInt(1);
+    		}
+    	}catch(SQLException e)
+    	{
+    		e.printStackTrace();
+    	}
+    	return -1;
+    }
+    public int getNext() {
+		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
+		String sql = "select bbsID from bbs order by bbsID desc";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1; //첫 번째 게시물인 경우
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
+	}
     
     public void close() {
         try {
