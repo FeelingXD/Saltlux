@@ -101,9 +101,10 @@ public class EnhancedConnect {
     	
     }
    
-    public void delete(String sql) { //  delete 
+    public void delete(String sql) {//  delete 
     	
     }
+    
     //--- TDD insert_hash 
     public void insert_hash(String userid,String category ,Map<String, String> multi) throws SQLException {
     	String sql_board ="insert into bbs values(?,?,?,?,?,?,?,?)";//

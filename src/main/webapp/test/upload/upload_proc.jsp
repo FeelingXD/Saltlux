@@ -9,13 +9,16 @@
 
 <%
 	String user_name =(String)session.getAttribute("user_name");
+	EnhancedConnect ec= new EnhancedConnect();
 %>
 <%
+	String next  = Integer.toString(ec.getNext());
+
     // request로 들어온 데이터 저장할 변수 선언
     Map<String, String> user = new HashMap<String, String>();
- 
+
     // 이미지는 서버에 저장
-    String saveDir = application.getRealPath("/image/"); // 저장할 경로 지정
+    String saveDir = application.getRealPath("/image/"+next+"/"); // 저장할 경로 지정
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정
@@ -58,7 +61,6 @@
                 }
             }
             // enhanced connect
-			EnhancedConnect ec= new EnhancedConnect();
 			ec.insert_hash(user_name, "photo" , user );
 			out.println(ec.last_In());
 			
