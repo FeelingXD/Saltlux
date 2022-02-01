@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+    pageEncoding="utf-8"%>    
 <%request.setCharacterEncoding("utf-8");%>
 
 <!DOCTYPE html>
@@ -18,6 +18,13 @@
 <body>
 <header>
 <%@ include file= "header.jsp" %>
+<% String category = request.getParameter("category");
+	%>
+	
+	<%	
+		if(category == null)
+			category = "journal";  //default
+	%>
 </header>
 <section>
 	
@@ -49,7 +56,7 @@
 	    	    </ul>
 	    	<ul class="buttons">
 				<li><button type="submit" >완료</button></li>
-				<li><button type="button" onclick="location.href='board_list.jsp'">목록</button></li>
+				<li><button type="button" onclick="location.href='board_list.jsp?category=<%=category%>'">목록</button></li>
 			</ul>
 		
 	    </form>

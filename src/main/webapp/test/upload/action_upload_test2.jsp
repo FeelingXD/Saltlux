@@ -3,7 +3,11 @@
 <%@page import="java.util.Collection"%>
 <%@page import="javax.servlet.annotation.MultipartConfig"%>
 <%
-	
 	Collection<Part> parts = request.getParts();	
-	out.println(parts);
+	for (Part part: parts){
+			
+		String field = part.getName();
+		out.println(field);
+		
+	}
 %>

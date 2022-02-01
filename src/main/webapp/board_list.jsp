@@ -43,7 +43,7 @@
 	}
 	
 	BbsDAO bbsDAO = new BbsDAO(); // 인스턴스 생성
-	ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+	ArrayList<Bbs> list = bbsDAO.getList(pageNumber,category);
 	
 	int count =bbsDAO.selectCnt("bbs"); //전체행 수
 	String tempStart = request.getParameter("page");
@@ -136,16 +136,18 @@
 					<button onclick="location.href='board_list.jsp'">목록</button>
 				</li>
 			<% if(session.getAttribute("rank")!=null){
-					if(category.equals("notice")){}
+					if(category.equals("notice")&&!session.getAttribute("rank").equals("Admin")){
+						
+					}
 					else{ 
-			%>	
+				%>	
 					<li>
 						<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
 					</li>
-			<% 
+				<% 
 					}
 				}
-			%>
+				%>
 			</ul>
 	
 			

@@ -78,13 +78,13 @@ public class BbsDAO {
 		}
 		return -1; //데이터베이스 오류
 	}
-	public int write(String bbsTitle, String userID, String bbsContent) { //@overload
+	public int write(String bbsTitle, String userID, String bbsContent) { //@overload 
 		return this.write(bbsTitle,userID,bbsContent,"journal");
 	}
 	
 	//게시글 리스트 메소드
-		public ArrayList<Bbs> getList(int pageNumber){
-			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 order by rownum desc limit 10";
+		public ArrayList<Bbs> getList(int pageNumber,String category){
+			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 and bbsCategory = '"+ category +"' order by rownum desc limit 10";
 			ArrayList<Bbs> list = new ArrayList<Bbs>();
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
