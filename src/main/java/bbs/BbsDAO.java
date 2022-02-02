@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BbsDAO {
-
 	private Connection conn;
 	private ResultSet rs;
 	
@@ -108,6 +107,7 @@ public class BbsDAO {
 			return list;
 		}
 		//----------카운트
+		
 		public int selectCnt(String table){
 			int result = 0;
 			ResultSet rs = null;
