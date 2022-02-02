@@ -21,31 +21,34 @@
 </head>
 <body>
 <header>
-	<% request.setCharacterEncoding("utf-8"); %>
-	<% String category = request.getParameter("category");
-	%>
-	
-	<%	
-		if(category == null)
-			category = "journal";  //default
-	%>
 	
     <%@ include file= "header.jsp" %>
     </header>
     <section>
-	
+    <% request.setCharacterEncoding("utf-8"); %>
 	<%
+	String userID = null;
+	if (session.getAttribute("userID") != null) {//주어진 userID에 연결된 속성값을 얻어낸다.
+		userID = (String) session.getAttribute("userID");
+	}
+	if (request.getParameter("searchField") == "0" || request.getParameter("searchText") == null
+			|| request.getParameter("searchField").equals("0")
+			|| request.getParameter("searchText").equals("")) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('입력이 안 된 사항이 있습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	}
+	BbsDAO bbsDAO = new BbsDAO();
+	
 	int pageNumber = 1; //페이지 기본은 1로 설정
 	// 만약 파라미터로 넘어온 오브젝트 타입 'pageNumber'가 존재한다면
 	// 'int'타입으로 캐스팅을 해주고 그 값을 'pageNumber'변수에 저장한다
 	if(request.getParameter("pageNumber") != null){
 		pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 	}
-	
-	BbsDAO bbsDAO = new BbsDAO(); // 인스턴스 생성
-	ArrayList<Bbs> list = bbsDAO.getList(pageNumber,category);
-	
-	int count =bbsDAO.selectCnt("bbs"); //전체행 수
+	int count =bbsDAO.searchCnt(request.getParameter("searchField"),request.getParameter("searchText")); //전체행 수
 	String tempStart = request.getParameter("page");
 	int startPage = 0; // limit의 시작값 -> 첫 limit 0,10
 	int onePageCnt=10; // 한페이지에 출력할 행의 갯수
@@ -70,9 +73,19 @@
 					<span class="col5">등록일</span>
 					<span class="col6">조회</span>
 				</li>
-						<%
-							for(int i = 0; i < list.size(); i++){
-						%>
+				<%
+						
+						ArrayList<Bbs> list = bbsDAO.getSearch(request.getParameter("searchField"),
+								request.getParameter("searchText"));
+						if (list.size() == 0) {
+							PrintWriter script = response.getWriter();
+							script.println("<script>");
+							script.println("alert('검색결과가 없습니다.')");
+							script.println("history.back()");
+							script.println("</script>");
+						}
+						for (int i = 0; i < list.size(); i++) {
+					%>
 				<li>
 					<span class="col1"><%= list.get(i).getRownum() %></span>
 					<span class="col2"><a href="board_view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
@@ -88,13 +101,11 @@
 			<form method="post" name="search" action="search.jsp">
 				<table>
 					<tr>
-						<td>
-						<select class="form-control" name="searchField">
+						<td><select class="form-control" name="searchField">
 								<option value="0">선택</option>
 								<option value="bbsTitle">제목</option>
 								<option value="userID">작성자</option>
-						</select>
-						</td>
+						</select></td>
 						<td><input type="text" class="form-control"
 							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>
@@ -108,13 +119,13 @@
 	    		<%
 				if(pageNumber != 1){
 				%>
-				<li><a href="board_list.jsp?pageNumber=<%=pageNumber - 1 %>">◀ </a> </li>
+				<li><a href="search.jsp?pageNumber=<%=pageNumber - 1 %>">◀ </a> </li>
 					<li>&nbsp;</li>
 				<%}%>
 				
 				<%
 					for(int i=1; i<=count; i++){ %>
-					<li><a href="board_list.jsp?pageNumber=<%=i %>">[<%=i%>]
+					<li><a href="search.jsp?pageNumber=<%=i %>">[<%=i%>]
 					</a></li>
 					<li>&nbsp;</li>
 					<% }; %>
@@ -122,7 +133,7 @@
 					<%
 					if(bbsDAO.nextPage(pageNumber + 1)){
 					%>
-					<li><a href="board_list.jsp?pageNumber=<%=pageNumber + 1 %>"> ▶</a></li>
+					<li><a href="search.jsp?pageNumber=<%=pageNumber + 1 %>"> ▶</a></li>
 					<li>&nbsp;</li>
 					<%
 					}
@@ -132,22 +143,15 @@
 			
 			<ul class="buttons">
 			
+				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li>
-					<button onclick="location.href='board_list.jsp'">목록</button>
+<% if(session.getAttribute("user_name")==null){ %>    
+					
+					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
+<% }else{  %>
+					<button onclick="location.href='board_form.jsp'">글쓰기</button>
+<% } %>
 				</li>
-			<% if(session.getAttribute("rank")!=null){
-					if(category.equals("notice")&&!session.getAttribute("rank").equals("Admin")){
-						
-					}
-					else{ 
-				%>	
-					<li>
-						<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
-					</li>
-				<% 
-					}
-				}
-				%>
 			</ul>
 	
 			
