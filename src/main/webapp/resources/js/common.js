@@ -5,8 +5,15 @@
 이름 "/^[가-힣]+$/"
 비밀번호 "/^[a-z]+[a-z0-9]$/g"
 **/
-
-const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
+reghash = new Map(
+	[
+		["id",/^[a-z]+[a-z0-9]$/],
+		["pass",/^[a-z0-9]+$/],
+		["name",/^[가-힣]{2,4}$/],
+		["email1",/^[a-z0-9]+$/],
+		["email2",/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/]
+	]);
+//const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
 
 function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 검증 form_name 폼이름, expression 표현식
 	const inputs = document.forms[form_name].elements;
@@ -17,7 +24,7 @@ function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 �
 		}
 	}
 }
-function about_blank(form_name){ //raw
+function about_blank(form_name){ //type code.
 	
 	const inputs = document.forms[form_name].elements;
 	for(element of inputs){
@@ -65,8 +72,8 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 	} //inject secure
 	
 	(function(form_name){
-		let i = 0;
-		let j = i;
+//		let i = 0;
+//		let j = i;
 		const inputs = document.forms[form_name].elements;
 		
 		for(element of inputs){// blankfield check.
@@ -81,20 +88,27 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 			}
 		}
 		
-		for(i =0 ; i < (inputs.length-1) ; i++,j++){ //value reg check.
+//		for(i =0 ; i < (inputs.length-1) ; i++,j++){ //value reg check. @past code
+//			
+//			
+//			if(i==2){
+//				j= i-1;
+//				continue;
+//			}
+//				
+//			if(!regArray[j].test(inputs[i].value)){
+//
+//				return alert(inputs[i].getAttribute('tag')+'값을 확인해주세요');
+//				
+//			}
+//			
+//		}
+		for(element of inputs)
+		{
 			
-			
-			if(i==2){
-				j= i-1;
-				continue;
-			}
+			if(!reghash.get(element.name).test(element.value))
+				return alert(element.getAttribute('tag')+'값을 확인해주세요');
 				
-			if(!regArray[j].test(inputs[i].value)){
-
-				return alert(inputs[i].getAttribute('tag')+'값을 확인해주세요');
-				
-			}
-			
 		}
 		
 		if(inputs.pass.value!=inputs.pass_confirm.value){
@@ -107,7 +121,7 @@ function check_input_memberform(form_name){//@only use in memberform aka sign-up
 	})(form_name);
 }
 
-/*function check_id(form_name){//아이디 중복 체크 화면 open...... 뭐지...
+/*function check_id(form_name){//아이디 중복 체크 화면 open @past code not used.
 
 	if(input_value_check(form_name))
 	{

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<script type="text/javascript" src="/resources/js/common.js">
+
+</script>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -15,7 +18,7 @@
       <ul class="nav navbar-nav">
 
         <li class="active"><a href="index.jsp">Home</a></li>    
-            <li><a href="">공지사항</a></li><!-- 만들것 -->
+            <li><a href="board_list.jsp?category=notice">공지사항</a></li><!-- 만들것 -->
             <li><a href="board_list.jsp">실습일지</a></li>
             <li><a href="board_photo.jsp">사진첩</a></li>
       </ul>
