@@ -58,9 +58,11 @@ public class BbsDAO {
 	}
 	
 	//글쓰기 메소드
+
 	
 	public int write(String bbsTitle, String userID, String bbsContent ,String bbsCategory) {
 		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?, ?, ?)";
+
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
@@ -70,7 +72,9 @@ public class BbsDAO {
 			pstmt.setString(5, bbsContent);
 			pstmt.setInt(6, 1); //글의 유효번호
 			pstmt.setInt(7, 0);// 조회수 0부터 시작
+
 			pstmt.setString(8, bbsCategory);
+
 			return pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -82,8 +86,10 @@ public class BbsDAO {
 	}
 	
 	//게시글 리스트 메소드
+
 		public ArrayList<Bbs> getList(int pageNumber,String category){
 			String sql = "SELECT @rownum := @rownum + 1 AS ROWNUM,T.* from bbs T,(select@rownum:=0) TMP where bbsID < ? and bbsAvailable = 1 and bbsCategory = '"+ category +"' order by rownum desc limit 10";
+
 			ArrayList<Bbs> list = new ArrayList<Bbs>();
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -176,6 +182,7 @@ public class BbsDAO {
 					bbs.setBbsContent(rs.getString(5));
 					bbs.setBbsAvailable(rs.getInt(6));
 					int hit=rs.getInt(7); 
+					bbs.setFilename(rs.getString(8));
 					bbs.setHit(hit);
 					hit++;
 					updateHit(hit,bbsID);//조회수 업데이트
@@ -234,7 +241,9 @@ public class BbsDAO {
 		}
 		public ArrayList<Bbs> getSearch(String searchField, String searchText){//특정한 리스트를 받아서 반환
 		      ArrayList<Bbs> list = new ArrayList<Bbs>();
+
 		      String SQL ="select @rownum := @rownum + 1 AS ROWNUM,T.* from bbs as T,(select@rownum:=0) TMP WHERE "+searchField.trim();
+
 		      try {
 		            if(searchText != null && !searchText.equals("") ){
 		                SQL +=" LIKE '%"+searchText.trim()+"%'  and bbsAvailable = 1 order by rownum desc limit 10";
