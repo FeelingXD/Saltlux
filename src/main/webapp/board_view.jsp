@@ -54,6 +54,10 @@
 				
 			</li>
 			<li>
+			<% if (bbs.getFilename() != null) {
+			%>
+			<img src="resources/upload/<%=bbs.getFilename()%>" style="width: 100%">
+			<%}%>
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")
 							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
 			</li>		

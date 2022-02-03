@@ -2,10 +2,12 @@
     pageEncoding="utf-8"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="bbs.BbsDAO"%>
+<%@ page import="java.util.Enumeration" %>
+
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="bbs" class="bbs.Bbs" scope="page"/>
-<jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +32,7 @@
 			script.println("</script>");
 		}else{
 			// 입력이 안 된 부분이 있는지 체크한다
-			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null){
+			if(multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다')");
@@ -38,8 +40,9 @@
 				script.println("</script>");
 			}else{
 				// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
+				
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent(),category);
+				int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
 				
 				// 데이터베이스 오류인 경우
 				if(result == -1){
