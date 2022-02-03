@@ -20,10 +20,21 @@
 
 <% EnhancedConnect ec= new EnhancedConnect(); %>
 	<%
-	String sql = "select * from member";
-	ResultSet rs =ec.select(sql);
+	String n = (String)session.getAttribute("user_name");
+	String sql = "select * from member where name = ?";
+	ResultSet rs =ec.select(sql, n);
 	if (rs.next()) {
+		String[]email = rs.getString("email").split("@");
 %>
+
+<script>
+
+function mem_delete() {
+	//회원탈퇴
+	window.open("member_delete.jsp?id="+document.member_modify.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+}
+
+</script>
 
 <title>회원가입</title>
 </head>
@@ -34,7 +45,7 @@
        
         <div id="main_content">
       		<div id="join_box">
-          	<form  name="member_form" method="post" action="member_modify.php?id=<?=$userid?>">
+          	<form  name="member_form" method="post" action="member_modify_update.jsp">
 			    <h2>회원 정보수정</h2>
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
@@ -69,8 +80,8 @@
 			       	<div class="form email">
 				        <div class="col1">이메일</div>
 				        <div class="col2">
-							<input type="text" name="email1" value="<?=$email1?>">@<input 
-							       type="text" name="email2" value="<?=$email2?>">
+							<input type="text" name="email1" value=<%=email[0]%>>@<input 
+							       type="text" name="email2" value=<%=email[1]%>>
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -78,10 +89,11 @@
 			       	<div class="form email">
 				        <div class="col1">기업선택</div>
 				        <div class="col2">
+							 	<%-- <input type="text" value="<%=rs.getString("workplace") %>"> --%>
 							 <select name="Work" >
-							 <option value="select1" > 광주인공지능센터 </option>
-							 <option value="select2" > 위치스 </option>
-							 <option value="select3" > 이글루시큐리티 </option>
+							 	<option value="Saltlux"> 광주인공지능센터 </option>
+							 	<option value="Witches"> 위치스 </option>
+							 	<option value="EglooSecurity"> 이글루시큐리티 </option>
 							 </select>
 				        </div>                 
 			       	</div>
@@ -89,14 +101,14 @@
 			       	<div class="bottom_line"> </div>
 			       	
 	           		<div class="buttons">
+	           			<button onclick="mem_delete()">회원탈퇴</button>
 	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="check_input()">&nbsp;
                   		<img id="reset_button" style="cursor:pointer" src="./resources/img/button_reset.gif"
                   			onclick="reset_form()">
 	           		</div>
            	</form>
-           	 	<%
-		}
-		
+<%
+		}		
 %>
         	</div> <!-- join_box -->
         </div> <!-- main_content -->
