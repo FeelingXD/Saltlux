@@ -32,7 +32,11 @@
 	    <h3 id="board_title">
 	    		실습일지 > 글 쓰기
 		</h3>
-	    <form name="board_form" method="post" action="board_insert.jsp" >
+	<% if(category!="notice"){ %>
+	    	<form name="board_form" method="psot" action="board_insert.jsp?category=<%=category%>" enctype ="multipart/form-data">
+	  <%}else{%>
+	  	  <form name="board_form" method="post" action="board_insert.jsp?category=<%=category%>" >
+	  <% }%>
 	    <ul id="board_form">
 				<li>
 					<span class="col1">이름 : </span>
@@ -52,6 +56,16 @@
 	    				<textarea name="bbsContent"></textarea>
 	    			</span>
 	    		</li>
+	    		<% if(!"notice".equals(category)){ 	%>
+	  			<li>
+	    			<span class="col1">파일 : </span>
+	    			<span class="col2">
+	    				<input type=file name =file/>
+	    			</span>
+	    		</li>
+	  <%}else{%>
+	  
+	  <% }%>
 	    		
 	    	    </ul>
 	    	<ul class="buttons">

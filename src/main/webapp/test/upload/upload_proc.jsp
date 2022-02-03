@@ -56,12 +56,14 @@
                     user.put("image",fileName);
                    	user.put("path",saveDir + "/"  + fileName);
                     // saves the file on disk
-                    item.write(storeFile);
                     
+                   	item.write(storeFile);
                 }
+                
             }
             // enhanced connect
 			ec.insert_hash(user_name, "photo" , user );
+            
 			out.println(ec.last_In());
 			
             for(String item : user.values()){

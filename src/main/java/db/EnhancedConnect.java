@@ -21,7 +21,7 @@ public class EnhancedConnect {
     
     public EnhancedConnect() { // test 환경에 맞게 수정할것 .
 
-        this("jdbc:mysql://localhost:3307/Saltlux", "root", "root");
+        this("jdbc:mysql://192.168.0.107:3307/Saltlux", "root", "1234");
     }
     
     public EnhancedConnect(String host, int port, String schema, String user, String pw) {
@@ -164,21 +164,21 @@ public class EnhancedConnect {
 		}
 		return ""; //데이터베이스 오류
 	}
-//    public int last_In() {
-//    	
-//    	String sql = "SELECT max(last_insert_id(bbsID)) FROM Saltlux.bbs";
-//    	try {
-//    		PreparedStatement pstmt = conn.prepareStatement(sql);
-//    		rs = pstmt.executeQuery();
-//    		if(rs.next()) {
-//    			return rs.getInt(1);
-//    		}
-//    	}catch(SQLException e)
-//    	{
-//    		e.printStackTrace();
-//    	}
-//    	return -1;
-//    }
+    public int last_In() {
+    	
+    	String sql = "SELECT max(last_insert_id(bbsID)) FROM Saltlux.bbs";
+    	try {
+    		PreparedStatement pstmt = conn.prepareStatement(sql);
+    		rs = pstmt.executeQuery();
+    		if(rs.next()) {
+    			return rs.getInt(1);
+    		}
+    	}catch(SQLException e)
+    	{
+    		e.printStackTrace();
+    	}
+    	return -1;
+    }
     public int getNext() {
 		//현재 게시글을 내림차순으로 조회하여 가장 마지막 글의 번호를 구한다
 		String sql = "select bbsID from bbs order by bbsID desc";

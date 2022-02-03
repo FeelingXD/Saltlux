@@ -15,6 +15,7 @@
 </head>
 <body>
 <header>
+<%String category = "photo"; %>
     	<%@ include file= "header.jsp" %>
     </header>
     <section>
@@ -97,7 +98,7 @@
 					
 					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
 <% }else{  %>
-					<button onclick="location.href='board_form.jsp'">글쓰기</button>
+					<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
 <% } %>
 				</li>
 			</ul>
