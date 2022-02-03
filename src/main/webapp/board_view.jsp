@@ -36,7 +36,7 @@
 		script.println("<script>");
 		script.println("alert('유효하지 않은 글입니다')");
 		script.println("location.href='board_list.jsp'");
-		script.println("</script");
+		script.println("</script>");
 	}
 	Bbs bbs = new BbsDAO().getBbs(bbsID);
 %>
@@ -63,7 +63,7 @@
 			</li>		
 	    </ul>
 	    <ul class="buttons">
-				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
+				<li><button onclick="location.href='board_list.jsp">목록</button></li>
 				<li><button onclick="location.href='board_modifyform.jsp?bbsID=<%= bbsID %>'">수정</button></li>
 				<li><button onclick="location.href='board_delete.jsp?bbsID=<%= bbsID %>'">삭제</button></li>
 		</ul>

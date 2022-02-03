@@ -22,9 +22,18 @@
 <body>
 <header>
 	<% request.setCharacterEncoding("utf-8"); %>
+	<% String category = request.getParameter("category");
+	%>
+	
+	<%	
+		if(category == null)
+			category = "journal";  //default
+	%>
+	
     <%@ include file= "header.jsp" %>
     </header>
     <section>
+	
 	<%
 	int pageNumber = 1; //페이지 기본은 1로 설정
 	// 만약 파라미터로 넘어온 오브젝트 타입 'pageNumber'가 존재한다면
@@ -34,7 +43,7 @@
 	}
 	
 	BbsDAO bbsDAO = new BbsDAO(); // 인스턴스 생성
-	ArrayList<Bbs> list = bbsDAO.getList(pageNumber);
+	ArrayList<Bbs> list = bbsDAO.getList(pageNumber,category);
 	
 	int count =bbsDAO.selectCnt("bbs"); //전체행 수
 	String tempStart = request.getParameter("page");
@@ -61,10 +70,9 @@
 					<span class="col5">등록일</span>
 					<span class="col6">조회</span>
 				</li>
-				<%
-					
-						for(int i = 0; i < list.size(); i++){
-					%>
+						<%
+							for(int i = 0; i < list.size(); i++){
+						%>
 				<li>
 					<span class="col1"><%= list.get(i).getRownum() %></span>
 					<span class="col2"><a href="board_view.jsp?bbsID=<%= list.get(i).getBbsID() %>"><%= list.get(i).getBbsTitle().replaceAll(" ", "&nbsp;")
@@ -80,11 +88,13 @@
 			<form method="post" name="search" action="search.jsp">
 				<table>
 					<tr>
-						<td><select class="form-control" name="searchField">
+						<td>
+						<select class="form-control" name="searchField">
 								<option value="0">선택</option>
 								<option value="bbsTitle">제목</option>
 								<option value="userID">작성자</option>
-						</select></td>
+						</select>
+						</td>
 						<td><input type="text" class="form-control"
 							placeholder="검색어 입력" name="searchText" maxlength="100"></td>
 						<td><button type="submit" class="btn btn-success">검색</button></td>
@@ -122,15 +132,22 @@
 			
 			<ul class="buttons">
 			
-				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li>
-<% if(session.getAttribute("user_name")==null){ %>    
-					
-					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
-<% }else{  %>
-					<button onclick="location.href='board_form.jsp'">글쓰기</button>
-<% } %>
+					<button onclick="location.href='board_list.jsp'">목록</button>
 				</li>
+			<% if(session.getAttribute("rank")!=null){
+					if(category.equals("notice")&&!session.getAttribute("rank").equals("Admin")){
+						
+					}
+					else{ 
+				%>	
+					<li>
+						<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
+					</li>
+				<% 
+					}
+				}
+				%>
 			</ul>
 	
 			
