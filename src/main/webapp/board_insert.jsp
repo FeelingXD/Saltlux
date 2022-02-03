@@ -32,7 +32,7 @@
 			script.println("</script>");
 		}else{
 			// 입력이 안 된 부분이 있는지 체크한다
-			if(multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null){
+			if(request.getParameter("bbsTitle") == null || request.getParameter("bbsContent") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다')");
