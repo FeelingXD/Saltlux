@@ -24,7 +24,7 @@
 	    <h3 id="board_title">
 	    		실습일지 > 글 쓰기
 		</h3>
-	    <form name="board_form" method="post" action="board_insert.jsp" >
+	    <form name="board_form" method="post" action="board_insert.jsp" enctype="multipart/form-data" >
 	    <ul id="board_form">
 				<li>
 					<span class="col1">이름 : </span>
@@ -44,6 +44,10 @@
 	    				<textarea name="bbsContent"></textarea>
 	    			</span>
 	    		</li>
+	    		<li>
+			        <span class="col1"> 첨부 파일</span>
+			        <span class="col2"><input type="file" name="filename"></span>
+			    </li>
 	    		
 	    	    </ul>
 	    	<ul class="buttons">

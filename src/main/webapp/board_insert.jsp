@@ -2,10 +2,12 @@
     pageEncoding="utf-8"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="bbs.BbsDAO"%>
+<%@ page import="java.util.Enumeration" %>
+
+<%@ page import="com.oreilly.servlet.*"%>
+<%@ page import="com.oreilly.servlet.multipart.*"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="bbs" class="bbs.Bbs" scope="page"/>
-<jsp:setProperty name="bbs" property="bbsTitle" />
-<jsp:setProperty name="bbs" property="bbsContent"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,17 @@
 <body>
 
 	<%
+	String filename = "";
+	String realFolder = request.getRealPath("resources/upload"); //웹 어플리케이션상의 절대 경로
+	String encType = "utf-8"; //인코딩 타입
+	int maxSize = 5 * 1024 * 1024; //최대 업로드될 파일의 크기5Mb
+	
+	MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+
+	Enumeration files = multi.getFileNames();
+	String fname = (String) files.nextElement();
+	String fileName = multi.getFilesystemName(fname); //파일이름
+	
 		// 현재 세션 상태 체크
 		String userID = null;
 		if(session.getAttribute("user_name") != null){
@@ -29,7 +42,7 @@
 			script.println("</script>");
 		}else{
 			// 입력이 안 된 부분이 있는지 체크한다
-			if(bbs.getBbsTitle() == null || bbs.getBbsContent() == null){
+			if(multi.getParameter("bbsTitle") == null || multi.getParameter("bbsContent") == null){
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
 				script.println("alert('입력이 안 된 사항이 있습니다')");
@@ -37,8 +50,9 @@
 				script.println("</script>");
 			}else{
 				// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
+				
 				BbsDAO bbsDAO = new BbsDAO();
-				int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
+				int result = bbsDAO.write(multi.getParameter("bbsTitle"), userID, multi.getParameter("bbsContent"),fileName);
 				// 데이터베이스 오류인 경우
 				if(result == -1){
 					PrintWriter script = response.getWriter();
