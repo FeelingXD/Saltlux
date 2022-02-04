@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,17 +110,18 @@ public class EnhancedConnect {
     }
     
     //--- TDD insert_hash 
-    public void insert_hash(String userid,String category ,Map<String, String> multi) throws SQLException {
+    public void insert_hash(String userid,String category ,Map<String, String> multi) throws SQLException{
     	String sql_board ="insert into bbs values(?,?,?,?,?,?,?,?)";//
         
     	String sql_image ="insert into image values(?,?,?)";// 
+    	
     	int next =getNext();
     	String date= getDate();
     	
-    	try {
+    	try{
     		conn.setAutoCommit(false);
     		
-    		PreparedStatement pstmt =conn.prepareStatement(sql_board);
+    		PreparedStatement pstmt = conn.prepareStatement(sql_board);
   			
 	    	pstmt.setInt(1, next);
 			pstmt.setString(2, multi.get("bbsTitle"));
@@ -132,18 +133,18 @@ public class EnhancedConnect {
 			pstmt.setInt(7, 0);// 조회수 0부터 시작
 			pstmt.setString(8, category);
 			pstmt.executeUpdate();
-			if(multi.get("image")!= null||!multi.get("image").isEmpty()) {
+			
 			PreparedStatement pstmt2 =conn.prepareStatement(sql_image);
 			pstmt2.setInt(1, next);
 			pstmt2.setString(2, multi.get("image"));
 			pstmt2.setString(3, multi.get("path"));
 			pstmt2.executeUpdate();
-			}
+			
 			conn.commit();
     		
     	}catch(SQLException e) {
-    		conn.rollback();
     		e.printStackTrace();
+    		
     	}finally {
     		conn.setAutoCommit(true);
     	}

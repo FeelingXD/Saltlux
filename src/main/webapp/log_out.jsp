@@ -11,7 +11,8 @@
 <% 
 	status =request.getParameter("status"); 
 
-	if(status.equals(null)){
+	if(status==null){
+	
 %>
 <script type="text/javascript">
 	alert("로그아웃하셧습니다.");

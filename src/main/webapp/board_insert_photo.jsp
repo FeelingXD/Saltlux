@@ -57,9 +57,11 @@
                     user.put(name,value);
                     
                 } else {
-                    
                 	// file 형식일 때
                     fileName = new File(item.getName()).getName();
+                	if(fileName.isEmpty()){
+                		break ;
+                	}
                     File storeFile = new File(saveDir + "/"  + fileName);
                     user.put("image",fileName);
                    	user.put("path",saveDir + "/"  + fileName);
@@ -68,13 +70,12 @@
                 }
                 
             }
-            if((user.get("bbsTitle")!=null&&user.get("bbsTitle").isEmpty())||(user.get("bbsContent")!=null&&user.get("bbsContent").isEmpty()))
-            	return ;
+          
             	// enhanced connect
 			ec.insert_hash(user_name, category , user );
-            
+            out.println(user_name +category);
 			out.println(ec.last_In());
-			
+			out.println(user.get("image")!=null);
             for(String item : user.values()){
             	out.println(item);
             	
