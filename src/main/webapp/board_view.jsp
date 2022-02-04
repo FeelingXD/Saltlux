@@ -54,16 +54,13 @@
 				
 			</li>
 			<li>
-			<% if (bbs.getFilename() != null) {
-			%>
-			<img src="resources/upload/<%=bbs.getFilename()%>" style="width: 100%">
-			<%}%>
+			
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")
 							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
 			</li>		
 	    </ul>
 	    <ul class="buttons">
-				<li><button onclick="location.href='board_list.jsp">목록</button></li>
+				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li><button onclick="location.href='board_modifyform.jsp?bbsID=<%= bbsID %>'">수정</button></li>
 				<li><button onclick="location.href='board_delete.jsp?bbsID=<%= bbsID %>'">삭제</button></li>
 		</ul>

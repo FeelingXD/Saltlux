@@ -33,8 +33,8 @@
 	    		실습일지 > 글 쓰기
 		</h3>
 
-	<% if(category!="notice"){ %>
-	    	<form name="board_form" method="psot" action="board_insert.jsp?category=<%=category%>" enctype ="multipart/form-data">
+	<% if(!category.equals("notice")){ %>
+	    	<form name="board_form" method="post" action="board_insert_photo.jsp?category=<%=category%>" enctype ="multipart/form-data">
 	  <%}else{%>
 	  	  <form name="board_form" method="post" action="board_insert.jsp?category=<%=category%>" >
 	  <% }%>
