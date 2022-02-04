@@ -31,7 +31,7 @@
 
 function mem_delete() {
 	//회원탈퇴
-	window.open("member_delete.jsp?id="+document.member_modify.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+	window.open("member_modify_delete.jsp?id="+document.member_modify.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
 }
 
 </script>
