@@ -62,7 +62,7 @@
                 
             }
             // enhanced connect
-			ec.insert_hash(user_name, "photo" , user );
+			ec.insert_hash(user_name, category , user );
             
 			out.println(ec.last_In());
 			
