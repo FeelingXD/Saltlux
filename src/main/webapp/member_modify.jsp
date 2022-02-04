@@ -28,14 +28,18 @@
 %>
 
 <script>
-
 function mem_delete() {
 	//회원탈퇴
-	window.open("member_modify_delete.jsp?id="+document.member_modify.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+	document.member_form.action='member_modify_delete.jsp';
+	document.member_form.submit();
+	window.open("member_modify_delete.jsp?id="+document.member_form.id.value,"","width=500, height=300, resizable = no, scrollbars = no");
+}
+function modify(){
+	document.member_form.action='member_modify_update.jsp';
+	document.member_form.submit();
 }
 
 </script>
-
 <title>회원가입</title>
 </head>
 <body>
@@ -45,12 +49,12 @@ function mem_delete() {
        
         <div id="main_content">
       		<div id="join_box">
-          	<form  name="member_form" method="post" action="member_modify_update.jsp">
+          	<form  name="member_form" method="post" action="#">
 			    <h2>회원 정보수정</h2>
     		    	<div class="form id">
 				        <div class="col1">아이디</div>
 				        <div class="col2">
-							<%=rs.getString("id") %>
+							<input type="text" value="<%=rs.getString("id") %>" name =id readonly> 
 				        </div>                 
 			       	</div>
 			       	<div class="clear"></div>
@@ -102,7 +106,7 @@ function mem_delete() {
 			       	
 	           		<div class="buttons">
 	           			<button onclick="mem_delete()">회원탈퇴</button>
-	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="check_input()">&nbsp;
+	                	<img style="cursor:pointer" src="./resources/img/button_save.gif" onclick="modify()">&nbsp;
                   		<img id="reset_button" style="cursor:pointer" src="./resources/img/button_reset.gif"
                   			onclick="reset_form()">
 	           		</div>
