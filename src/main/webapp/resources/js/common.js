@@ -15,7 +15,7 @@ reghash = new Map(
 	]);
 //const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
 
-function image_check(form_name){ // test
+function image_check(form_name){ // TDD 
 	var form= document.forms[form_name];
 	var img = form.elements.file.value;
 	

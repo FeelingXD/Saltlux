@@ -29,9 +29,7 @@
     String saveDir = application.getRealPath("/image/"+next+"/"); // 저장할 경로 지정
     File pathDir = new File(saveDir);
     
-    if(!pathDir.exists()){
-    	pathDir.mkdirs();
-    }
+ 
     
     
     // 유효한 request인지 확인
@@ -64,6 +62,9 @@
                     user.put(name,value);
                     
                 } else {
+                	 if(!pathDir.exists()){
+                	    	pathDir.mkdirs();
+                	  }
                 	// file 형식일 때
                     fileName = new File(item.getName()).getName();
                 	if(fileName.isEmpty()){
