@@ -73,7 +73,8 @@
                     File storeFile = new File(saveDir + "/"  + fileName);
                     user.put("image",fileName);
                    	user.put("path",saveDir + "/"  + fileName);
-                    // saves the file on disk
+                    
+                   	// saves the file on disk
                    	item.write(storeFile);
                 }
                 
@@ -97,3 +98,4 @@
     }
     catch ( Exception e ) { out.println(e); }
 %>
+<script type="text/javascript">location.go(-1)</script>
