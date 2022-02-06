@@ -21,7 +21,7 @@ public class EnhancedConnect {
     
     public EnhancedConnect() { // test 환경에 맞게 수정할것 .
 
-        this("jdbc:mysql://192.168.0.107:3307/Saltlux", "root", "1234");
+        this("jdbc:mysql://localhost:3307/Saltlux", "root", "1234");
     }
     
     public EnhancedConnect(String host, int port, String schema, String user, String pw) {
@@ -147,6 +147,7 @@ public class EnhancedConnect {
     		
     	}finally {
     		conn.setAutoCommit(true);
+    		conn.close();
     	}
     	
     }

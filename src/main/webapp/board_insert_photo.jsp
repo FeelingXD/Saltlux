@@ -27,6 +27,13 @@
 
     // 이미지는 서버에 저장
     String saveDir = application.getRealPath("/image/"+next+"/"); // 저장할 경로 지정
+    File pathDir = new File(saveDir);
+    
+    if(!pathDir.exists()){
+    	pathDir.mkdirs();
+    }
+    
+    
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정

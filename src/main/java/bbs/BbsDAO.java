@@ -14,7 +14,7 @@ public class BbsDAO {
 	//기본 생성자
 	public BbsDAO() {
 		try {
-			String url = "jdbc:mysql://192.168.0.107:3307/Saltlux";
+			String url = "jdbc:mysql://localhost:3307/Saltlux";
 			String user = "root";
 			String password = "1234";
 
@@ -168,7 +168,7 @@ public class BbsDAO {
 		
 		// 게시글 뷰
 		public Bbs getBbs(int bbsID) {
-			String sql = "select * from bbs where bbsID = ?";
+			String sql = "select * from bbs as b left join image as i on b.bbsID=i.bbsid where b.bbsID = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, bbsID);
@@ -185,6 +185,7 @@ public class BbsDAO {
 					bbs.setFilename(rs.getString(8));
 					bbs.setHit(hit);
 					hit++;
+					bbs.setFilename(rs.getString("path"));
 					updateHit(hit,bbsID);//조회수 업데이트
 					return bbs;
 				}

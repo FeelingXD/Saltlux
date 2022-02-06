@@ -15,6 +15,23 @@ reghash = new Map(
 	]);
 //const regArray=[/^[a-z]+[a-z0-9]$/,/^[a-z0-9]+$/,/^[가-힣]{2,4}$/,/^[a-z0-9]+$/,/[0-9a-zA-Z]([-_.]?[0-9a-zA-Z]+)*.[a-zA-Z]{2,3}$/];  //정규식 배열 
 
+function image_check(form_name){ // test
+	var form= document.forms[form_name];
+	var img = form.elements.file.value;
+	
+	let filedot = img.lastIndexOf(".");
+	let fileType = img.substring(filedot+1,img.length).toLowercase();
+	
+	var max_size =5 *1024*1024;
+	var file_form = /(jpg|jpeg|png|gif|bmp|pdf)$/;
+	
+	if(img!=null){
+		if(!file_form.test(fileype)){
+			alert('이미지형식의 파일만 첨부할수있습니다.');
+			return false;
+		}
+	}
+}
 function input_value_check(form_name, expression="/'|;|--|./"){//폼 입력값 검증 form_name 폼이름, expression 표현식
 	const inputs = document.forms[form_name].elements;
 	var regexp = new RegExp(expression, 'g');

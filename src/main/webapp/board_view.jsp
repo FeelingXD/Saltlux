@@ -47,16 +47,18 @@
 			실습일지
 		</h3>
   <ul id="view_content">
+  			
 			<li>
 				<span class="col1"><b>제목 :</b> <%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;")
 				.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></span>
 				<span class="col2"><%=bbs.getUserID() %> | <%= bbs.getBbsDate().substring(0, 11) %> | <%=bbs.getHit() %></span>
 				
 			</li>
-			<li>
-			
+			<li>	
+				<img alt="" src="./image/<%=bbsID%>/<%=bbs.getFilename()%>"/>
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")
-							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %>
+							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n",
+									 "<br>") %>
 			</li>		
 	    </ul>
 	    <ul class="buttons">

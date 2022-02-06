@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
+<script src="./resources/js/common.js"></script>
 <title>글쓰기</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
 		</h3>
 
 	<% if(!category.equals("notice")){ %>
-	    	<form name="board_form" method="post" action="board_insert_photo.jsp?category=<%=category%>" enctype ="multipart/form-data">
+	    	<form name="board_form" method="post" action="board_insert_photo.jsp?category=<%=category%>"  enctype ="multipart/form-data">
 	  <%}else{%>
 	  	  <form name="board_form" method="post" action="board_insert.jsp?category=<%=category%>" >
 	  <% }%>
@@ -63,7 +63,7 @@
 	  			<li>
 	    			<span class="col1">파일 : </span>
 	    			<span class="col2">
-	    				<input type=file name =file/>
+	    				<input type="file" name ="file"  accept="image/*"/>
 	    			</span>
 	    		</li>
 	  <%}else{%>
