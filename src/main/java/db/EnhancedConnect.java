@@ -154,19 +154,19 @@ public class EnhancedConnect {
     }
     public void alter_hash(int bbsid, Map<String, String> multi) throws SQLException
     {
-//			String bbs = "update `Saltlux`.`bbs` set `bbsTitle` = ?, `bbsContent` = ? where `bbsID` =?";
-			String sql_image ="Update image set file=? , path=? where id=? ";// 
+			String bbs = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID =?";
+			String sql_image ="update image set file=? , path=? where id=? ";// 
     	
     	try{
     		conn.setAutoCommit(false);
     		
-//    		PreparedStatement pstmt = conn.prepareStatement(bbs);
-//    		pstmt.setString(1, multi.get("bbsTitle"));
-//    		pstmt.setString(2, multi.get("bbsContent"));
-//    		pstmt.setInt(3, bbsid);
-//    		pstmt.executeUpdate();
-//    
-//    			
+			PreparedStatement pstmt = conn.prepareStatement(bbs);
+			pstmt.setString(1, multi.get("bbsTitle"));
+			pstmt.setString(2, multi.get("bbsContent"));
+			pstmt.setInt(3, bbsid);
+			pstmt.executeUpdate();
+   
+   			
 			PreparedStatement pstmt2 =conn.prepareStatement(sql_image);
 		
 			pstmt2.setString(1, multi.get("image"));
