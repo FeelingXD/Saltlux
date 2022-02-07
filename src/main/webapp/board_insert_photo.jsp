@@ -27,11 +27,6 @@
 
     // 이미지는 서버에 저장
     String saveDir = application.getRealPath("/image/"+next+"/"); // 저장할 경로 지정
-    File pathDir = new File(saveDir);
-    
- 
-    
-    
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정
@@ -62,9 +57,6 @@
                     user.put(name,value);
                     
                 } else {
-                	 if(!pathDir.exists()){
-                	    	pathDir.mkdirs();
-                	  }
                 	// file 형식일 때
                     fileName = new File(item.getName()).getName();
                 	if(fileName.isEmpty()){
@@ -73,8 +65,9 @@
                     File storeFile = new File(saveDir + "/"  + fileName);
                     user.put("image",fileName);
                    	user.put("path",saveDir + "/"  + fileName);
+                    // saves the file on disk
+
                     
-                   	// saves the file on disk
                    	item.write(storeFile);
                 }
                 
@@ -98,4 +91,3 @@
     }
     catch ( Exception e ) { out.println(e); }
 %>
-<script type="text/javascript">location.go(-1)</script>
