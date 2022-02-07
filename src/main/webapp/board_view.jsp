@@ -1,3 +1,4 @@
+<%@page import="db.EnhancedConnect"%>
 <%@page import="bbs.Bbs"%>
 <%@page import="bbs.BbsDAO"%>
 <%@page import="java.io.PrintWriter"%>
@@ -25,7 +26,11 @@
     	<%@ include file= "header.jsp" %>
 </header>
 <% request.setCharacterEncoding("utf-8"); %>
-	<% 
+<% 
+	String category = request.getParameter("category");
+		if(category==null)
+			category ="journal";
+	
 	int bbsID = 0;
 	if(request.getParameter("bbsID") != null){
 		bbsID = Integer.parseInt(request.getParameter("bbsID"));
@@ -39,6 +44,14 @@
 		script.println("</script>");
 	}
 	Bbs bbs = new BbsDAO().getBbs(bbsID);
+	
+	EnhancedConnect ec = new EnhancedConnect();
+	
+	ResultSet rs = ec.select("select * from bbs as b left join image as i on b.bbsID=i.id where b.bbsID = "+bbsID);
+	String file = "";
+	if(rs.next()){
+		file = rs.getString("file");
+	}
 %>
 
 <section>
@@ -54,16 +67,18 @@
 				<span class="col2"><%=bbs.getUserID() %> | <%= bbs.getBbsDate().substring(0, 11) %> | <%=bbs.getHit() %></span>
 				
 			</li>
+			
 			<li>	
-				<img alt="" src="./image/<%=bbsID%>/<%=bbs.getFilename()%>"/>
+				<img alt="" src="./image/<%=bbsID%>/<%=file %>" style="width: 100%; height: 50%"/>
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")
 							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n",
 									 "<br>") %>
-			</li>		
+			</li>
+					
 	    </ul>
 	    <ul class="buttons">
 				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
-				<li><button onclick="location.href='board_modifyform.jsp?bbsID=<%= bbsID %>'">수정</button></li>
+				<li><button onclick="location.href='board_modifyform.jsp?bbsID=<%= bbsID %>&category=<%=category%>'">수정</button></li>
 				<li><button onclick="location.href='board_delete.jsp?bbsID=<%= bbsID %>'">삭제</button></li>
 		</ul>
 	</div> <!-- board_box -->

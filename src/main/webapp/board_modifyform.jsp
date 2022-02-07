@@ -21,6 +21,7 @@
 <%@ include file= "header.jsp" %>
 <section>
 <% request.setCharacterEncoding("utf-8"); %>
+<% String category = request.getParameter("category"); %>
 	<%
 		// 세션에 값이 담겨있는지 체크
 		String userID = null;
@@ -59,7 +60,12 @@
 	    <h3 id="board_title">
 	    		실습일지 > 글 수정
 		</h3>
-	    <form name="board_form" method="post" action="board_modify.jsp?bbsID=<%= bbsID %>" >
+	    <% if(!category.equals("notice")){ %>
+	    	<form name ="board_form" method="post" enctype ="multipart/form-data" action="board_modify_photo.jsp?bbsID=<%=bbsID %>">
+	  <%}else{%>
+	  	   <form name="board_form" method="post" action="board_modify.jsp?bbsID=<%= bbsID%>" >
+	  <% }%>
+
 	    <ul id="board_form">
 				<li>
 					<span class="col1">이름 : </span>
@@ -80,12 +86,21 @@
 	    			</span>
 	    		</li>
 	    		
+			    		<% if(!"notice".equals(category)){ 	%>
+			  			<li>
+			    			<span class="col1">파일 : </span>
+			    			<span class="col2">
+			    				<input type="file" name ="file"  accept="image/*"/>
+			    			</span>
+			    		</li>
+			  <%}else{%>
+			  
+			  <% }%>
 	    	    </ul>
 	    	<ul class="buttons">
 				<li><button type="submit" >완료</button></li>
 				<li><button type="button" onclick="location.href='board_list.jsp'">목록</button></li>
 			</ul>
-		
 	    </form>
 	</div> <!-- board_box -->
 </section> 

@@ -65,5 +65,10 @@ public class Bbs {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
-
+	public void print_info(){
+		System.out.println(getBbsAvailable());
+		System.out.println(getBbsContent());
+		System.out.println(getBbsTitle());
+		System.out.println(getFilename());
+	}
 }

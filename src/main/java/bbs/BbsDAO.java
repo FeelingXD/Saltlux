@@ -168,7 +168,7 @@ public class BbsDAO {
 		
 		// 게시글 뷰
 		public Bbs getBbs(int bbsID) {
-			String sql = "select * from bbs as b left join image as i on b.bbsID=i.bbsid where b.bbsID = ?";
+			String sql = "select * from bbs as b left join image as i on b.bbsID=i.id where b.bbsID = ?";
 			try {
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, bbsID);
@@ -181,11 +181,11 @@ public class BbsDAO {
 					bbs.setBbsDate(rs.getString(4));
 					bbs.setBbsContent(rs.getString(5));
 					bbs.setBbsAvailable(rs.getInt(6));
+					bbs.setFilename(rs.getString("file"));
 					int hit=rs.getInt(7); 
-					bbs.setFilename(rs.getString(8));
 					bbs.setHit(hit);
 					hit++;
-					bbs.setFilename(rs.getString("path"));
+					
 					updateHit(hit,bbsID);//조회수 업데이트
 					return bbs;
 				}

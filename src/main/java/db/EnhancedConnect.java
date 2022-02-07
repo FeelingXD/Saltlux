@@ -4,6 +4,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 import java.util.*;
 import java.util.HashMap;
@@ -147,9 +148,42 @@ public class EnhancedConnect {
     		
     	}finally {
     		conn.setAutoCommit(true);
-    		conn.close();
+    		
     	}
     	
+    }
+    public void alter_hash(int bbsid, Map<String, String> multi) throws SQLException
+    {
+//			String bbs = "update `Saltlux`.`bbs` set `bbsTitle` = ?, `bbsContent` = ? where `bbsID` =?";
+			String sql_image ="Update image set file=? , path=? where id=? ";// 
+    	
+    	try{
+    		conn.setAutoCommit(false);
+    		
+//    		PreparedStatement pstmt = conn.prepareStatement(bbs);
+//    		pstmt.setString(1, multi.get("bbsTitle"));
+//    		pstmt.setString(2, multi.get("bbsContent"));
+//    		pstmt.setInt(3, bbsid);
+//    		pstmt.executeUpdate();
+//    
+//    			
+			PreparedStatement pstmt2 =conn.prepareStatement(sql_image);
+		
+			pstmt2.setString(1, multi.get("image"));
+			pstmt2.setString(2, multi.get("path"));
+			pstmt2.setInt(3, bbsid);
+			pstmt2.executeUpdate();
+    		
+			
+			conn.commit();
+    		
+    	}catch(SQLException e) {
+    		e.printStackTrace();
+    		
+    	}finally {
+    		conn.setAutoCommit(true);
+    		
+    	}
     }
     
    //-----
