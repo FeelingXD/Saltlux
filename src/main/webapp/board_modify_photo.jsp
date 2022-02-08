@@ -74,7 +74,9 @@
                    	user.put("path", saveDir + "/"  + fileName);
                     
                    	// saves the file on disk
-                   	item.write(storeFile);
+                   	if(!storeFile.exists()){ // if file not excists then save file .
+                   		item.write(storeFile);
+                    }
                    	ImageResizer ir = new ImageResizer(saveDir,storeFile,975,650);
                 }
                 
@@ -99,6 +101,7 @@
         }
     }
     catch ( Exception e ) { out.println(e); }
+    finally
 %>
-<script type="text/javascript">location.</script>
+<script type="text/javascript">location.replace('board_view.jsp?bbsID=<%=bbsID%>')</script>
 

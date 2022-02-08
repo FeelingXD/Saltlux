@@ -10,7 +10,7 @@
 <%@ page import = "org.apache.commons.io.output.*" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head></head>
 <meta charset="UTF-8">
 <title></title>
 <% String category= request.getParameter("category"); %>
@@ -21,7 +21,8 @@
 	EnhancedConnect ec= new EnhancedConnect();
 %>
 <%
-	String next  = Integer.toString(ec.getNext());
+	int intNext = ec.getNext();
+	String next  = Integer.toString(intNext);
 
     // request로 들어온 데이터 저장할 변수 선언
     Map<String, String> user = new HashMap<String, String>();
@@ -68,8 +69,9 @@
                    	user.put("path",saveDir + "/"  + fileName);
                     // saves the file on disk
 
-                    
-                   	item.write(storeFile);
+                    if(!storeFile.exists()){
+                   		item.write(storeFile);
+                    }
                    	ImageResizer ir = new ImageResizer(saveDir,storeFile,975,650);
                 }
                 
@@ -93,3 +95,6 @@
     }
     catch ( Exception e ) { out.println(e); }
 %>
+<script type="text/javascript">location.replace('board_view.jsp?bbsID=<%=intNext%>')</script>
+
+</html>

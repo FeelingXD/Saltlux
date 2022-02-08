@@ -68,8 +68,10 @@
 				
 			</li>
 			
-			<li>	
-				<img alt="" src="./image/<%=bbsID%>/<%=file %>" style="width: 100%; height: 50%"/>
+			<li>
+			<%if(file!=null){ %>	
+				<img alt="" src="./image/<%=bbsID%>/<%=file %> " onerror="this.src='./resources/img/error.png'" style="width: 100%; height: 50%"/>
+				<%} %>
 				<%= bbs.getBbsContent().replaceAll(" ", "&nbsp;")
 							.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n",
 									 "<br>") %>

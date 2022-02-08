@@ -14,7 +14,7 @@ public class BbsDAO {
 	//기본 생성자
 	public BbsDAO() {
 		try {
-			String url = "jdbc:mysql://localhost:3307/Saltlux";
+			String url = "jdbc:mysql://192.168.0.107:3307/Saltlux";
 			String user = "root";
 			String password = "1234";
 
@@ -39,6 +39,7 @@ public class BbsDAO {
 		}
 		return ""; //데이터베이스 오류
 	}
+	//
 	
 	//게시글 번호 부여 메소드
 	public int getNext() {
@@ -58,7 +59,6 @@ public class BbsDAO {
 	}
 	
 	//글쓰기 메소드
-
 	
 	public int write(String bbsTitle, String userID, String bbsContent ,String bbsCategory) {
 		String sql = "insert into bbs values(?, ?, ?, ?, ?, ?, ?, ?)";

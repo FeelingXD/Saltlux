@@ -20,7 +20,7 @@
 	<%String category = "photo"; %>
 	<%@ include file= "header.jsp" %>
 	<%EnhancedConnect ec = new EnhancedConnect();
-		String sql = "select bbsID from bbs where bbsCategory='photo'";
+		String sql = "select bbsID from bbs where bbsCategory='photo' and bbsAvailable=1 order by bbsID desc;";
 		ResultSet rs = ec.select(sql);
 	%>
 </header>
@@ -30,19 +30,12 @@
 	<h2>사진게시판</h2>
 	<div class="row">
 
-
-	  
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
 	<% 
 	  while(rs.next()){
 		  %>
 		<div class="col-xs-6 col-md-3">
 	    <a href="board_view.jsp?bbsID=<%=rs.getString("bbsID")%>" class="thumbnail">
-	      <img src="./image/<%=rs.getString("bbsID")%>/Thumbnail.png">
+	      <img src="./image/<%=rs.getString("bbsID")%>/Thumbnail.png" onerror="this.src='./resources/img/error.png'">
 	    </a>
 	  </div>
 	  <% 
