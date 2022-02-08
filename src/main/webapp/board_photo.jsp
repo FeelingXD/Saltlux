@@ -15,75 +15,15 @@
 </head>
 <body>
 <header>
-<%String category = "photo"; %>
-    	<%@ include file= "header.jsp" %>
-    </header>
-    <section>
-   
+	<%String category = "photo"; %>
+	<%@ include file= "header.jsp" %>
+</header>
+
+<section>   
 	<div class="container">
 	<h2>사진게시판</h2>
 	<div class="row">
 	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div><div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div>
-	  <div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div><div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div><div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div><div class="col-xs-6 col-md-3">
-	    <a href="#" class="thumbnail">
-	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
-	    </a>
-	  </div><div class="col-xs-6 col-md-3">
 	    <a href="#" class="thumbnail">
 	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
 	    </a>
@@ -94,12 +34,12 @@
 			<ul class="buttons">
 				<li><button onclick="location.href='board_list.jsp'">목록</button></li>
 				<li>
-<% if(session.getAttribute("user_name")==null){ %>    
-					
-					<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
-<% }else{  %>
-					<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
-<% } %>
+	<% if(session.getAttribute("user_name")==null){ %>    
+						
+		<a href="javascript:alert('로그인 후 이용해 주세요!')"><button>글쓰기</button></a>
+	<% }else{  %>
+		<button onclick="location.href='board_form.jsp?category=<%=category%>'">글쓰기</button>
+	<% } %>
 				</li>
 			</ul>
 			</div>

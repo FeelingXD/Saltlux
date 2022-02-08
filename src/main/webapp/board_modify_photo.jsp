@@ -1,5 +1,4 @@
-
-    <%@page import="db.EnhancedConnect"%>
+<%@page import="db.EnhancedConnect"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import = "java.io.*,java.util.*"%>
@@ -80,11 +79,12 @@
             }
           
             	// enhanced connect
-            out.println(id);
-			ec.alter_hash(id,  user);
+            out.println("id ="+id);
+            	
+			ec.alter_hash(id, user);
             out.println(user_name + category);
-			out.println(ec.last_In());
-			out.println(user.get("image")!=null);
+			out.println("이미지가 있는지 =?"+user.get("image")!=null);
+			
             for(String item : user.values()){
             	out.println(item);	
             }
@@ -93,9 +93,10 @@
             	out.println(item);
             }
             
+            ec.close();
         }
     }
     catch ( Exception e ) { out.println(e); }
 %>
-<script type="text/javascript">location.go(-1)</script>
+<script type="text/javascript">location.</script>
 

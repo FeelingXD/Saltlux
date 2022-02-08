@@ -154,16 +154,20 @@ public class EnhancedConnect {
     }
     public void alter_hash(int bbsid, Map<String, String> multi) throws SQLException
     {
-			String bbs = "update bbs set bbsTitle = ?, bbsContent = ? where bbsID =?";
+			String bbs_update = "update bbs set bbsTitle =?, bbsContent=? where bbsID=? ";
 			String sql_image ="update image set file=? , path=? where id=? ";// 
     	
     	try{
     		conn.setAutoCommit(false);
     		
-			PreparedStatement pstmt = conn.prepareStatement(bbs);
+			PreparedStatement pstmt = conn.prepareStatement(bbs_update);
+			
+//			System.out.println("before :" + pstmt.toString()); Tdd
 			pstmt.setString(1, multi.get("bbsTitle"));
 			pstmt.setString(2, multi.get("bbsContent"));
 			pstmt.setInt(3, bbsid);
+//			System.out.println("after :" + pstmt.toString());			
+			
 			pstmt.executeUpdate();
    
    			
@@ -174,16 +178,15 @@ public class EnhancedConnect {
 			pstmt2.setInt(3, bbsid);
 			pstmt2.executeUpdate();
     		
-			
-			conn.commit();
+//			conn.commit();
     		
     	}catch(SQLException e) {
     		e.printStackTrace();
     		
     	}finally {
     		conn.setAutoCommit(true);
-    		
     	}
+		
     }
     
    //-----

@@ -61,9 +61,9 @@
 	    		실습일지 > 글 수정
 		</h3>
 	    <% if(!category.equals("notice")){ %>
-	    	<form name ="board_form" method="post" enctype ="multipart/form-data" action="board_modify_photo.jsp?bbsID=<%=bbsID %>">
+	    	<form name ="board_form" method="post" action="board_modify_photo.jsp?bbsID=<%=bbsID%>" enctype ="multipart/form-data" >
 	  <%}else{%>
-	  	   <form name="board_form" method="post" action="board_modify.jsp?bbsID=<%= bbsID%>" >
+	  	   <form name="board_form" method="post" action="board_modify.jsp?bbsID=<%=bbsID%>" >
 	  <% }%>
 
 	    <ul id="board_form">
