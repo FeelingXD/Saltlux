@@ -1,3 +1,4 @@
+<%@page import="imgResize.ImageResizer"%>
 <%@page import="db.EnhancedConnect"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -74,6 +75,7 @@
                     
                    	// saves the file on disk
                    	item.write(storeFile);
+                   	ImageResizer ir = new ImageResizer(saveDir,storeFile,975,650);
                 }
                 
             }

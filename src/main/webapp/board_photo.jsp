@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="db.EnhancedConnect"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -17,17 +19,35 @@
 <header>
 	<%String category = "photo"; %>
 	<%@ include file= "header.jsp" %>
+	<%EnhancedConnect ec = new EnhancedConnect();
+		String sql = "select bbsID from bbs where bbsCategory='photo'";
+		ResultSet rs = ec.select(sql);
+	%>
 </header>
 
 <section>   
 	<div class="container">
 	<h2>사진게시판</h2>
 	<div class="row">
+
+
+	  
 	  <div class="col-xs-6 col-md-3">
 	    <a href="#" class="thumbnail">
 	      <img src="https://cdn.crowdpic.net/detail-thumb/thumb_d_B82B358EA7E731FAD5D46023641D939A.jpg">
 	    </a>
 	  </div>
+	<% 
+	  while(rs.next()){
+		  %>
+		<div class="col-xs-6 col-md-3">
+	    <a href="board_view.jsp?bbsID=<%=rs.getString("bbsID")%>" class="thumbnail">
+	      <img src="./image/<%=rs.getString("bbsID")%>/Thumbnail.png">
+	    </a>
+	  </div>
+	  <% 
+		}
+	%>
 	</div>
 </div>
 <div id="board_box">

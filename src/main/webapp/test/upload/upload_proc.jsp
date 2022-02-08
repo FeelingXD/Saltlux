@@ -1,3 +1,4 @@
+<%@page import="imgResize.ImageResizer"%>
 <%@page import="db.EnhancedConnect"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
@@ -9,16 +10,16 @@
 
 <%
 	String user_name =(String)session.getAttribute("user_name");
-	EnhancedConnect ec= new EnhancedConnect();
+	
 %>
 <%
-	String next  = Integer.toString(ec.getNext());
+	
 
     // request로 들어온 데이터 저장할 변수 선언
     Map<String, String> user = new HashMap<String, String>();
 
     // 이미지는 서버에 저장
-    String saveDir = application.getRealPath("/image/"+next+"/"); // 저장할 경로 지정
+    String saveDir = application.getRealPath("/image/"+"test"+"/"); // 저장할 경로 지정
     // 유효한 request인지 확인
     boolean isMultipart = FileUpload.isMultipartContent(request);
     String fileName = ""; // 업로드한 파일의 이름을 저장할 변수 설정
@@ -56,15 +57,15 @@
                     user.put("image",fileName);
                    	user.put("path",saveDir + "/"  + fileName);
                     // saves the file on disk
-                    
+					
                    	item.write(storeFile);
+                   	ImageResizer ir = new ImageResizer(saveDir,storeFile,975,650);
                 }
                 
             }
             // enhanced connect
-			ec.insert_hash(user_name, "photo" , user );
-            
-			out.println(ec.last_In());
+			
+			
 			
             for(String item : user.values()){
             	out.println(item);

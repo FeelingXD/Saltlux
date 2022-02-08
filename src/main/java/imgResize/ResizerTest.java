@@ -20,7 +20,7 @@ public class ResizerTest {
 		
 		String formatName = imagePath.substring(imagePath.lastIndexOf(".")+1);
 		
-		ImageIO.write(newimage , formatName,new File(imageToWrite));
+		ImageIO.write(newimage , formatName, new File(imageToWrite));
 		
 		
 	}
