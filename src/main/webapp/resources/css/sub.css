@@ -1,0 +1,136 @@
+.free-wrap .quick {
+	padding: 70px 0;
+	position: relative;
+	z-index: 1;
+}
+
+.free-wrap .quick:after {
+	background: #f4f4f4;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: calc(100% + 10px);
+	z-index: -1;
+	display: block;
+	content: ""
+}
+
+.free-wrap .quick .ov {
+	max-width: 1140px;
+	margin: 0 auto;
+}
+
+.free-wrap .quick ul {
+	margin: 0 -1%;
+	padding: 0;
+	list-style: none;
+}
+
+.free-wrap .quick ul:after {
+	display: block;
+	content: "";
+	clear: both
+}
+
+.free-wrap .quick li {
+	float: left;
+	width: 23%;
+	margin: 0 1%
+}
+
+.free-wrap .quick li .txt {
+	min-height: 150px;
+	position: relative;
+	padding-left: 110px;
+	background: #fff;
+	box-sizing: border-box;
+	padding-top: 27px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+}
+
+.free-wrap .quick li .txt:before {
+	width: 74px;
+	height: 76px;
+	position: Absolute;
+	left: 19px;
+	top: 32px;
+	display: block;
+	content: "";
+	clear: both;
+}
+
+.free-wrap .quick li .txt .btxt {
+	font-size: 18px;
+	font-weight: 500;
+	color: #0f83f1;
+	letter-spacing: -0.03em;
+	line-height: 1.2em;
+	text-transform: uppercase;
+}
+
+.free-wrap .quick li .txt .stxt {
+	font-size: 14px;
+	font-weight: 300;
+	color: #707070;
+	letter-spacing: -0.03em;
+	line-height: 1.2em;
+	margin-top: 5px
+}
+
+.free-wrap .quick li .txt a {
+	margin-top: 17px;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 12px;
+	color: #1b1b1b;
+	letter-spacing: -0.02em;
+}
+
+.free-wrap .quick li .txt a span {
+	display: inline-block;
+	vertical-align: top;
+	position: Relative;
+	padding-right: 14px;
+	line-height: 16px
+}
+
+.free-wrap .quick li .txt a span:after {
+	width: 16px;
+	height: 16px;
+	position: Absolute;
+	right: 0;
+	top: 0;
+	background: url(/images/v33/sub/free-more.jpg) no-repeat right center;
+	display: block;
+	content: "";
+	-webkit-transition: right 0.3s ease-in-out;
+	-moz-transition: right 0.3s ease-in-out;
+	-o-transition: right 0.3s ease-in-out;
+	transition: right 0.3s ease-in-out;
+}
+
+.free-wrap .quick li:hover .txt a span:after {
+	right: -5px;
+}
+
+.free-wrap .quick li:nth-child(1) .txt:before {
+	background: url(../img/logo.png) no-repeat;
+	background-size:74px;
+}
+
+.free-wrap .quick li:nth-child(2) .txt:before {
+	background: url(../img/logo.png) no-repeat;
+	background-size:74px;
+}
+
+.free-wrap .quick li:nth-child(3) .txt:before {
+	background: url(../img/logo.png) no-repeat;
+	background-size:74px;
+}
+
+.free-wrap .quick li:nth-child(4) .txt:before {
+	background: url(../img/logo.png) no-repeat;
+	background-size:74px;
+}
