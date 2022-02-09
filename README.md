@@ -1,9 +1,9 @@
 # Saltlux Crud
 
-현장실습간 Crud 제작 프로젝트입니다.
-Saltlux Crud 홍페이지 제작및 배포를 위하여만든 repo 입니다.
+>현장실습간 Crud 제작 프로젝트입니다.
+>Saltlux Crud 홍페이지 제작및 배포를 위하여만든 repo 입니다.
 
-
+<hr/>
 
 사용 기술 
 
@@ -16,3 +16,7 @@ Saltlux Crud 홍페이지 제작및 배포를 위하여만든 repo 입니다.
 - java script
 - common file upload lib (apache)
 - docker
+
+<gr/>
+참여 인원
+
