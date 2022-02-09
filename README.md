@@ -3,7 +3,6 @@
 >현장실습간 Crud 제작 프로젝트입니다.
 >Saltlux Crud 홍페이지 제작및 배포를 위하여만든 repo 입니다.
 
-<hr/>
 
 사용 기술 
 
@@ -17,6 +16,11 @@
 - common file upload lib (apache)
 - docker
 
-<gr/>
+<hr/>
+
+
 참여 인원
 
+- 고지민  총괄, 서버 , 백엔드
+- 서순원  프론트
+- 양현지  백앤드
