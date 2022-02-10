@@ -1,0 +1,35 @@
+port: 3307
+
+CREATE DATABASE `Saltlux` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `bbs` (
+  `bbsID` int NOT NULL,
+  `bbsTitle` varchar(50) DEFAULT NULL,
+  `userID` varchar(20) DEFAULT NULL,
+  `bbsDate` datetime DEFAULT NULL,
+  `bbsContent` mediumtext,
+  `bbsAvailable` int DEFAULT NULL,
+  `hit` int DEFAULT NULL,
+  `bbsCategory` varchar(45) DEFAULT 'journal',
+  PRIMARY KEY (`bbsID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+//
+CREATE TABLE `image` (
+  `id` int NOT NULL,
+  `file` tinytext NOT NULL,
+  `path` tinytext NOT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `bbs` (`bbsID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+//
+
+CREATE TABLE `member` (
+  `pk` int NOT NULL AUTO_INCREMENT COMMENT '회원고유번호',
+  `id` varchar(45) NOT NULL COMMENT '아이디',
+  `pw` varchar(45) NOT NULL COMMENT '비밀번호',
+  `name` varchar(15) NOT NULL COMMENT '이름',
+  `workplace` varchar(45) NOT NULL COMMENT '실습장소',
+  `email` varchar(45) NOT NULL COMMENT '이메일',
+  `rank` varchar(45) NOT NULL DEFAULT 'USER' COMMENT '등급',
+  PRIMARY KEY (`pk`,`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
