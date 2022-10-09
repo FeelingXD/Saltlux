@@ -12,10 +12,11 @@
 - maven .
 - jsp
 - java (jdk 1.8)
-- java script
-- common file upload lib (apache)
+- javascript
 - docker
 
+library
+- common file upload lib (apache,java)ㅣ
 <hr/>
 
 
