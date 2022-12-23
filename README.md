@@ -1,5 +1,9 @@
 # Saltlux Crud
 
+## About summary
+
+>https://verdant-result-e1b.notion.site/Saltlux-crud-3c1fb0634ccb4449aa46803d0793bd62
+
 >현장실습 Crud 제작 프로젝트입니다.
 >Saltlux Crud 홍페이지 제작및 배포를 위하여만든 repo 입니다.
 
